@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.codigo</groupId>
-    <artifactId>ms-rodriguez-mijahuanga</artifactId>
+    <artifactId>ms-salazar-amoroto</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>ms-rodriguez-mijahuanga</name>
+	<name>ms-salazar-amoroto</name>
     <description>Demo project for Spring Boot</description>
 	<modules>
 		<module>domain</module>

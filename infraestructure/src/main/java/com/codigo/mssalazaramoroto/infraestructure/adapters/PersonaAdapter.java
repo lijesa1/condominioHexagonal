@@ -6,7 +6,9 @@ import com.codigo.mssalazaramoroto.domain.aggregates.dto.ReniecDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaRequest;
 import com.codigo.mssalazaramoroto.domain.ports.out.PersonaServiceOut;
 import com.codigo.mssalazaramoroto.infraestructure.client.ClientReniec;
+import com.codigo.mssalazaramoroto.infraestructure.dao.EmpresaRepository;
 import com.codigo.mssalazaramoroto.infraestructure.dao.PersonaRepository;
+import com.codigo.mssalazaramoroto.infraestructure.entity.Empresa;
 import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.PersonaMapper;
 import com.codigo.mssalazaramoroto.infraestructure.redis.RedisService;
@@ -24,6 +26,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PersonaAdapter implements PersonaServiceOut {
     private final PersonaRepository personaRepository;
+    private final EmpresaRepository empresaRepository;
     private final ClientReniec clientReniec;
     private final RedisService redisService;
 
@@ -39,11 +42,17 @@ public class PersonaAdapter implements PersonaServiceOut {
     private Persona getEntity(PersonaRequest personaRequest, boolean actualiza, Long id) {
         //Exec servicio
         ReniecDto reniecDto = getExecReniec(personaRequest.getNumDoc());
+        Empresa empresa = empresaRepository.findByNumeroDocumento(personaRequest.getEmpresa()).get();
         Persona entity = new Persona();
+        entity.setNombre(reniecDto.getNombres());
+        entity.setApellido(reniecDto.getApellidoPaterno() + " " + reniecDto.getApellidoMaterno());
+        entity.setTipoDocumento(reniecDto.getTipoDocumento());
         entity.setNumeroDocumento(reniecDto.getNumeroDocumento());
-        entity.setNombre(reniecDto.getNombre());
-        entity.setApellido(reniecDto.getApellido());
+        entity.setEmail(personaRequest.getEmail());
         entity.setEstado(Constant.STATUS_ACTIVE);
+        entity.setTelefono(personaRequest.getTelefono());
+        entity.setDireccion(personaRequest.getDireccion());
+        entity.setEmpresa(empresa);
         //Datos de auditoria donde corresponda
 
         if (actualiza) {

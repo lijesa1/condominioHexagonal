@@ -7,6 +7,7 @@ import com.codigo.mssalazaramoroto.domain.ports.out.EmpresaServiceOut;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,5 +23,25 @@ public class EmpresaServiceImpl implements EmpresaServiceIn {
     @Override
     public Optional<EmpresaDto> obtenerEmpresaByNumeroDocumentoIn(String numDoc) {
         return empresaServiceOut.obtenerEmpresaByNumeroDocumentoOut(numDoc);
+    }
+
+    @Override
+    public Optional<EmpresaDto> buscarXIdIn(Long id) {
+        return empresaServiceOut.buscarXIdOut(id);
+    }
+
+    @Override
+    public List<EmpresaDto> obtenerTodosIn() {
+        return empresaServiceOut.buscarTodasOut();
+    }
+
+    @Override
+    public EmpresaDto actualizarIn(Long id, EmpresaRequest empresaRequest) {
+        return empresaServiceOut.actualizarOut(id, empresaRequest);
+    }
+
+    @Override
+    public EmpresaDto deleteIn(Long id) {
+        return empresaServiceOut.deleteOut(id);
     }
 }

@@ -16,7 +16,6 @@ public class PersonaMapper {
         dto.setNumeroDocumento(entity.getNumeroDocumento());
         dto.setEmail(entity.getEmail());
         dto.setTelefono(entity.getTelefono());
-        dto.setTelefono(entity.getTelefono());
         dto.setDireccion(entity.getDireccion());
         dto.setEstado(entity.getEstado());
         dto.setUsuaCrea(entity.getUsuaCrea());

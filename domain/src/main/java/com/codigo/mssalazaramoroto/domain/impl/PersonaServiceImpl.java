@@ -32,7 +32,7 @@ public class PersonaServiceImpl implements PersonaServiceIn {
 
     @Override
     public PersonaDto actualziarIn(Long id, PersonaRequest personaRequest) {
-        return personaServiceOut.actualziarOut(id,personaRequest);
+        return personaServiceOut.actualizarOut(id,personaRequest);
     }
 
     @Override

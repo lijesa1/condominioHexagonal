@@ -7,7 +7,9 @@ import com.codigo.mssalazaramoroto.domain.aggregates.request.EmpresaRequest;
 import com.codigo.mssalazaramoroto.domain.ports.out.EmpresaServiceOut;
 import com.codigo.mssalazaramoroto.infraestructure.dao.EmpresaRepository;
 import com.codigo.mssalazaramoroto.infraestructure.entity.Empresa;
+import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.EmpresaMapper;
+import com.codigo.mssalazaramoroto.infraestructure.mapper.PersonaMapper;
 import com.codigo.mssalazaramoroto.infraestructure.redis.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.codigo.mssalazaramoroto.infraestructure.client.ClientSunat;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,6 +42,40 @@ public class EmpresaAdapter implements EmpresaServiceOut {
         return empresa.map(EmpresaMapper::fromEntity);
     }
 
+    @Override
+    public Optional<EmpresaDto> buscarXIdOut(Long id) {
+        return empresaRepository.findById(id).map(EmpresaMapper::fromEntity);
+    }
+
+    @Override
+    public List<EmpresaDto> buscarTodasOut() {
+        return List.of((EmpresaDto) empresaRepository.findAll());
+    }
+
+    @Override
+    public EmpresaDto actualizarOut(Long id, EmpresaRequest empresaRequest) {
+        Optional<Empresa> empresaRecuperada = empresaRepository.findById(id);
+        if (empresaRecuperada.isPresent()) {
+            Empresa empresaEntity = getEntity(empresaRequest, true, id);
+            return EmpresaMapper.fromEntity(empresaRepository.save(empresaEntity));
+        } else {
+            throw new RuntimeException("No se encontró la empresa");
+        }
+    }
+
+    @Override
+    public EmpresaDto deleteOut(Long id) {
+        Optional<Empresa> empresaRecuperada = empresaRepository.findById(id);
+        if (empresaRecuperada.isPresent()) {
+            empresaRecuperada.get().setEstado(Constant.STATUS_INACTIVE);
+            empresaRecuperada.get().setUsuaDelet(Constant.USU_ADMIN);
+            empresaRecuperada.get().setDateDelet(getTimestamp());
+            return EmpresaMapper.fromEntity(empresaRepository.save(empresaRecuperada.get()));
+        } else {
+            throw new RuntimeException("No se encontró la empresa");
+        }
+    }
+
     private Empresa getEntity(EmpresaRequest empresaRequest, boolean actualiza, Long id) {
         //Exec servicio
         SunatDto sunatDto = getExecSunat(empresaRequest.getNumDoc());
@@ -58,24 +95,27 @@ public class EmpresaAdapter implements EmpresaServiceOut {
         if (actualiza) {
             //si Actualizo hago esto
             entity.setId(id);
+            entity.setUsuaCrea(Constant.USU_ADMIN);
+            entity.setDateCreate(getTimestamp());
             entity.setUsuaModif(Constant.USU_ADMIN);
             entity.setDateModif(getTimestamp());
-
         } else {
             //Sino Actualizo hago esto
             entity.setUsuaCrea(Constant.USU_ADMIN);
             entity.setDateCreate(getTimestamp());
         }
-
         return entity;
     }
+
     private SunatDto getExecSunat(String numDoc) {
         String authorization = "Bearer " + tokenSunat;
         return clientSunat.getInfoSunat(numDoc, authorization);
     }
+
     private Timestamp getTimestamp() {
-        long currenTIme = System.currentTimeMillis();
-        return new Timestamp(currenTIme);
+        long currenTime = System.currentTimeMillis();
+        return new Timestamp(currenTime);
     }
+
 
 }

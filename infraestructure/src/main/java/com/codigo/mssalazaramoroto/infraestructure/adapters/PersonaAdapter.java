@@ -58,6 +58,8 @@ public class PersonaAdapter implements PersonaServiceOut {
         if (actualiza) {
             //si Actualizo hago esto
             entity.setId(id);
+            entity.setUsuaCrea(Constant.USU_ADMIN);
+            entity.setDateCreate(getTimestamp());
             entity.setUsuaModif(Constant.USU_ADMIN);
             entity.setDateModif(getTimestamp());
 
@@ -90,7 +92,7 @@ public class PersonaAdapter implements PersonaServiceOut {
         } else {
             PersonaDto personaDto = PersonaMapper.fromEntity(personaRepository.findById(id).get());
             String dataForRedis = Util.convertirAString(personaDto);
-            redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, dataForRedis, 2);
+            redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, dataForRedis, 10);
             return Optional.of(personaDto);
         }
     }
@@ -106,24 +108,24 @@ public class PersonaAdapter implements PersonaServiceOut {
     }
 
     @Override
-    public PersonaDto actualziarOut(Long id, PersonaRequest personaRequest) {
-        Optional<Persona> datoExtraido = personaRepository.findById(id);
-        if (datoExtraido.isPresent()) {
+    public PersonaDto actualizarOut(Long id, PersonaRequest personaRequest) {
+        Optional<Persona> personaRecuperada = personaRepository.findById(id);
+        if (personaRecuperada.isPresent()) {
             Persona personaEntity = getEntity(personaRequest, true, id);
             return PersonaMapper.fromEntity(personaRepository.save(personaEntity));
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException("No se encontro la persona");
         }
     }
 
     @Override
     public PersonaDto deleteOut(Long id) {
-        Optional<Persona> datoExtraido = personaRepository.findById(id);
-        if (datoExtraido.isPresent()) {
-            datoExtraido.get().setEstado(0);
-            datoExtraido.get().setUsuaDelet(Constant.USU_ADMIN);
-            datoExtraido.get().setDateDelet(getTimestamp());
-            return PersonaMapper.fromEntity(personaRepository.save(datoExtraido.get()));
+        Optional<Persona> personaRecuperada = personaRepository.findById(id);
+        if (personaRecuperada.isPresent()) {
+            personaRecuperada.get().setEstado(Constant.STATUS_INACTIVE);
+            personaRecuperada.get().setUsuaDelet(Constant.USU_ADMIN);
+            personaRecuperada.get().setDateDelet(getTimestamp());
+            return PersonaMapper.fromEntity(personaRepository.save(personaRecuperada.get()));
         } else {
             throw new RuntimeException();
         }

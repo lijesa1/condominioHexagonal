@@ -10,6 +10,6 @@ public interface PersonaServiceOut {
     PersonaDto crearPersonaOut(PersonaRequest personaRequest);
     Optional<PersonaDto> buscarXIdOut(Long id);
     List<PersonaDto> obtenerTodosOut();
-    PersonaDto actualziarOut(Long id, PersonaRequest personaRequest);
+    PersonaDto actualizarOut(Long id, PersonaRequest personaRequest);
     PersonaDto deleteOut(Long id);
 }

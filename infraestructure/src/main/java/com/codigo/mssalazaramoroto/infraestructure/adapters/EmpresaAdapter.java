@@ -2,6 +2,7 @@ package com.codigo.mssalazaramoroto.infraestructure.adapters;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.EmpresaDto;
+import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.SunatDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.EmpresaRequest;
 import com.codigo.mssalazaramoroto.domain.ports.out.EmpresaServiceOut;
@@ -11,12 +12,14 @@ import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.EmpresaMapper;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.PersonaMapper;
 import com.codigo.mssalazaramoroto.infraestructure.redis.RedisService;
+import com.codigo.mssalazaramoroto.infraestructure.util.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.codigo.mssalazaramoroto.infraestructure.client.ClientSunat;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,12 +47,26 @@ public class EmpresaAdapter implements EmpresaServiceOut {
 
     @Override
     public Optional<EmpresaDto> buscarXIdOut(Long id) {
-        return empresaRepository.findById(id).map(EmpresaMapper::fromEntity);
+        String redisInfo = redisService.getFromRedis(Constant.REDIS_KEY_OBTENEREMPRESA + id);
+        if (redisInfo != null) {
+            EmpresaDto empresaDto = Util.convertirDesdeString(redisInfo, EmpresaDto.class);
+            return Optional.of(empresaDto);
+        } else {
+            EmpresaDto empresaDto = EmpresaMapper.fromEntity(empresaRepository.findById(id).get());
+            String dataForRedis = Util.convertirEmpAString(empresaDto);
+            redisService.saveInRedis(Constant.REDIS_KEY_OBTENEREMPRESA + id, dataForRedis, 10);
+            return Optional.of(empresaDto);
+        }
     }
 
     @Override
     public List<EmpresaDto> buscarTodasOut() {
-        return List.of((EmpresaDto) empresaRepository.findAll());
+        List<EmpresaDto> listaDto = new ArrayList<>();
+        List<Empresa> entidades = empresaRepository.findAll();
+        for (Empresa dato : entidades) {
+            listaDto.add(EmpresaMapper.fromEntity(dato));
+        }
+        return listaDto;
     }
 
     @Override

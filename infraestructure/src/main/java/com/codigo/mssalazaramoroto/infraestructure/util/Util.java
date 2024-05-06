@@ -1,5 +1,6 @@
 package com.codigo.mssalazaramoroto.infraestructure.util;
 
+import com.codigo.mssalazaramoroto.domain.aggregates.dto.EmpresaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,14 @@ public class Util {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsString(personaDto);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static String convertirEmpAString(EmpresaDto empresaDto){
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.writeValueAsString(empresaDto);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

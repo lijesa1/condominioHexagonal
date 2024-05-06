@@ -127,7 +127,7 @@ public class PersonaAdapter implements PersonaServiceOut {
             personaRecuperada.get().setDateDelet(getTimestamp());
             return PersonaMapper.fromEntity(personaRepository.save(personaRecuperada.get()));
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException("No se encontro la persona");
         }
     }
 }

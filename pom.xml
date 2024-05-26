@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.codigo</groupId>
-    <artifactId>ms-salazar-amoroto</artifactId>
+    <artifactId>ms-condominio</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>ms-salazar-amoroto</name>
-    <description>Demo project for Spring Boot</description>
+	<name>ms-condominio</name>
+    <description>Demo project for Condominio</description>
 	<modules>
 		<module>domain</module>
 		<module>application</module>

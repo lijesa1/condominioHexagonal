@@ -13,3 +13,4 @@ public interface ClientReniec {
     ReniecDto getInfoReniec(@RequestParam("numero") String numero,
                             @RequestHeader("Authorization") String authorization);
 }
+

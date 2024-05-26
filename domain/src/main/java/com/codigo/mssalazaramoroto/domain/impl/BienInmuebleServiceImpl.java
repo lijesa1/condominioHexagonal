@@ -7,6 +7,8 @@ import com.codigo.mssalazaramoroto.domain.ports.out.BienInmuebleServiceOut;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class BienInmuebleServiceImpl implements BienInmuebleServiceIn {
@@ -15,5 +17,10 @@ public class BienInmuebleServiceImpl implements BienInmuebleServiceIn {
     @Override
     public BienInmuebleDto crearBienInmuebleServiceIn(BienInmuebleRequest bienInmuebleRequest) {
         return bienInmuebleServiceOut.crearBienInmuebleOut(bienInmuebleRequest);
+    }
+
+    @Override
+    public List<BienInmuebleDto> obtenerTodosIn() {
+        return bienInmuebleServiceOut.buscarTodosOut();
     }
 }

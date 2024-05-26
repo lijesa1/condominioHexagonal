@@ -2,6 +2,7 @@ package com.codigo.mssalazaramoroto.infraestructure.adapters;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.BienInmuebleDto;
+import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoBienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.BienInmuebleRequest;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoBienInmuebleRequest;
 import com.codigo.mssalazaramoroto.domain.ports.out.BienInmuebleServiceOut;
@@ -10,10 +11,13 @@ import com.codigo.mssalazaramoroto.infraestructure.dao.TipoBienInmuebleRepositor
 import com.codigo.mssalazaramoroto.infraestructure.entity.BienInmueble;
 import com.codigo.mssalazaramoroto.infraestructure.entity.TipoBienInmueble;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.BienInmuebleMapper;
+import com.codigo.mssalazaramoroto.infraestructure.mapper.TipoBienInmuebleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +29,16 @@ public class BienInmuebleAdapter implements BienInmuebleServiceOut {
     public BienInmuebleDto crearBienInmuebleOut(BienInmuebleRequest bienInmuebleRequest) {
         BienInmueble bienInmueble = getEntity(bienInmuebleRequest, false, null);
         return BienInmuebleMapper.fromEntity(bienInmuebleRepository.save(bienInmueble));
+    }
+
+    @Override
+    public List<BienInmuebleDto> buscarTodosOut() {
+        List<BienInmuebleDto> listaDto = new ArrayList<>();
+        List<BienInmueble> entidades = bienInmuebleRepository.findAll();
+        for (BienInmueble dato : entidades) {
+            listaDto.add(BienInmuebleMapper.fromEntity(dato));
+        }
+        return listaDto;
     }
 
     private BienInmueble getEntity(BienInmuebleRequest bienInmuebleRequest, boolean actualiza, Long id) {

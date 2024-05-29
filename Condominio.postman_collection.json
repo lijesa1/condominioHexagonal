@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "5e64646f-3ebf-42c9-a914-b54e986b25f2",
+		"name": "Condominio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34078531"
+	},
+	"item": [
+		{
+			"name": "TipoBienInmueble-crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoBienInmueble"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoBienInmueble-buscarTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoBienInmueble"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoBienInmueble-buscarPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoBienInmueble",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoBienInmueble-actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoBienInmueble"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoBienInmueble-eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoBienInmueble",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BienInmueble-crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"torre\": \"01\",\r\n    \"pisoTorre\": \"02\",\r\n    \"numDpto\": \"102\",\r\n    \"numEstacionamiento\": \"002\",\r\n    \"numComercio\": null,\r\n    \"enUso\": true,\r\n    \"enAlquiler\": false,\r\n    \"estado\": \"Activo\",\r\n    \"tipoBienInmueble\": \"Departamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/bienInmueble",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"bienInmueble"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BienInmueble-buscarTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/bienInmueble",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"bienInmueble"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BienInmueble-buscarPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/bienInmueble/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"bienInmueble",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BienInmueble-actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"torre\": \"07\",\r\n    \"pisoTorre\": \"07\",\r\n    \"numDpto\": \"107\",\r\n    \"numEstacionamiento\": \"007\",\r\n    \"numComercio\": null,\r\n    \"enUso\": false,\r\n    \"enAlquiler\": true,\r\n    \"estado\": \"Inactivo\",\r\n    \"tipoBienInmueble\": \"Departamento\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/bienInmueble/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"bienInmueble",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BienInmueble-eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/bienInmueble/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"bienInmueble",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoDocumento-crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipoDocumento\": \"DNI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoDocumento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoDocumento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoDocumento-buscarTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipoDocumento\": \"DNI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoDocumento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoDocumento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoDocumento-buscarPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoDocumento/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoDocumento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoDocumento-actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoDocumento/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoDocumento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoDocumento-eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoDocumento/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoDocumento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoPersona-crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"Propietario\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoPersona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoPersona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoPersona-buscarTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoPersona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoPersona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

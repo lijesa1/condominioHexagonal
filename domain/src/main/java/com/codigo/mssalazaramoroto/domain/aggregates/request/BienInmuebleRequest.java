@@ -15,4 +15,8 @@ public class BienInmuebleRequest {
     private Boolean enAlquiler;
     private String estado;
     private String tipoBienInmueble;
+
+
+
+
 }

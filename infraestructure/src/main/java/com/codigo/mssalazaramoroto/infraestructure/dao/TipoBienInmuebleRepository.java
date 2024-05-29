@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface TipoBienInmuebleRepository extends JpaRepository<TipoBienInmueble,Long> {
-Optional<TipoBienInmueble> findByDescripcion(String descripcion);
+public interface TipoBienInmuebleRepository extends JpaRepository<TipoBienInmueble, Long> {
+    Optional<TipoBienInmueble> findByDescripcion(String descripcion);
 }

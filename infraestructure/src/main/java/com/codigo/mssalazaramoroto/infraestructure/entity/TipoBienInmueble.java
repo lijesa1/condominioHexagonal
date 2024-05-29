@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
-
 @Entity
 @Setter
 @Getter
@@ -22,31 +22,41 @@ public class TipoBienInmueble {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @Column(name = "estado", nullable = false)
+
+
+    @Column(name = "estado", nullable = true)
     private String estado;
 
+    @Column(name = "usuario_creacion", nullable = true)
+    private String usuarioCreacion;
 
-   /* @OneToMany(targetEntity = BienInmueble.class, fetch = FetchType.LAZY, mappedBy = "tipoBienInmueble")
-    private List<BienInmueble> bienInmuebleList;
-*/
+    @Column(name = "fecha_creacion", nullable = true)
+    private Timestamp fechaCreacion;
 
-    @Column(name = "usuaCrea", length = 255)
-    private String usuaCrea;
+    @Column(name = "usuario_modificacion", nullable = true)
+    private String usuarioModificacion;
 
-    @Column(name = "dateCreate", nullable = true, columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private Timestamp dateCreate;
+    @Column(name = "fecha_modificacion", nullable = true)
+    private Timestamp fechaModificacion;
 
-    @Column(name = "usuaModif", length = 255)
-    private String usuaModif;
+    @Column(name = "usuario_actualizacion", nullable = true)
+    private String usuarioActualizacion;
 
-    @Column(name = "dateModif", columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private Timestamp dateModif;
+    @Column(name = "fecha_actualizacion", nullable = true)
+    private Timestamp fechaActualizacion;
 
-    @Column(name = "usuaDelet", length = 255)
-    private String usuaDelet;
+    @Column(name = "usuario_eliminacion", nullable = true)
+    private String usuarioEliminacion;
 
-    @Column(name = "dateDelet", columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private Timestamp dateDelet;
+    @Column(name = "fecha_eliminacion", nullable = true)
+    private Timestamp fechaEliminacion;
+
+    /*@OneToMany(targetEntity = BienInmueble.class, fetch = FetchType.LAZY, mappedBy = "tipoBienInmueble")
+    private List<BienInmueble> bienInmuebleList;*/
+
+
+
+
 
 
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
+
 @Entity
 @Setter
 @Getter
@@ -32,7 +33,7 @@ public class BienInmueble {
     @Column(name = "num_estacionamiento", nullable = false)
     private String numEstacionamiento;
 
-    @Column(name = "num_comercio")
+    @Column(name = "num_comercio", nullable = false)
     private String numComercio;
 
     @Column(name = "en_uso", nullable = false)
@@ -41,28 +42,43 @@ public class BienInmueble {
     @Column(name = "en_alquiler", nullable = false)
     private Boolean enAlquiler;
 
-    @Column(name = "estado", nullable = false)
+
+
+    @Column(name = "estado", nullable = true)
     private String estado;
 
-    @Column(name = "usua_crea")
-    private String usuaCrea;
+    @Column(name = "usuario_creacion", nullable = true)
+    private String usuarioCreacion;
 
-    @Column(name = "date_create")
-    private Timestamp dateCreate;
+    @Column(name = "fecha_creacion", nullable = true)
+    private Timestamp fechaCreacion;
 
-    @Column(name = "usua_modif")
-    private String usuaModif;
+    @Column(name = "usuario_modificacion", nullable = true)
+    private String usuarioModificacion;
 
-    @Column(name = "date_modif")
-    private Timestamp dateModif;
+    @Column(name = "fecha_modificacion", nullable = true)
+    private Timestamp fechaModificacion;
 
-    @Column(name = "usua_delet")
-    private String usuaDelet;
+    @Column(name = "usuario_actualizacion", nullable = true)
+    private String usuarioActualizacion;
 
-    @Column(name = "date_delet")
-    private Timestamp dateDelet;
+    @Column(name = "fecha_actualizacion", nullable = true)
+    private Timestamp fechaActualizacion;
+
+    @Column(name = "usuario_eliminacion", nullable = true)
+    private String usuarioEliminacion;
+
+    @Column(name = "fecha_eliminacion", nullable = true)
+    private Timestamp fechaEliminacion;
+
+
+
+
+
+
 
     @ManyToOne(targetEntity = TipoBienInmueble.class)
+    @JoinColumn(name = "tipo_bien_inmueble_id")
     private TipoBienInmueble tipoBienInmueble;
 
 

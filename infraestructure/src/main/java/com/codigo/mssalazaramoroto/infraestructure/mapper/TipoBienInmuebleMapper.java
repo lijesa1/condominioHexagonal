@@ -11,12 +11,14 @@ public class TipoBienInmuebleMapper {
         dto.setId(entity.getId());
         dto.setDescripcion(entity.getDescripcion());
         dto.setEstado(entity.getEstado());
-        dto.setUsuaCrea(entity.getUsuaCrea());
-        dto.setDateCreate(entity.getDateCreate());
-        dto.setUsuaModif(entity.getUsuaModif());
-        dto.setDateModif(entity.getDateModif());
-        dto.setUsuaDelet(entity.getUsuaDelet());
-        dto.setDateDelet(entity.getDateDelet());
+        dto.setUsuarioCreacion(entity.getUsuarioCreacion());
+        dto.setFechaCreacion(entity.getFechaCreacion());
+        dto.setUsuarioModificacion(entity.getUsuarioModificacion());
+        dto.setFechaModificacion(entity.getFechaModificacion());
+        dto.setUsuarioActualizacion(entity.getUsuarioActualizacion());
+        dto.setFechaActualizacion(entity.getFechaActualizacion());
+        dto.setUsuarioEliminacion(entity.getUsuarioEliminacion());
+        dto.setFechaEliminacion(entity.getFechaEliminacion());
         return dto;
     }
 

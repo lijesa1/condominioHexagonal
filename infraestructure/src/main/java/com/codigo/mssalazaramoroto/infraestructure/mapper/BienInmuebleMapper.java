@@ -2,6 +2,7 @@ package com.codigo.mssalazaramoroto.infraestructure.mapper;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.BienInmuebleDto;
 import com.codigo.mssalazaramoroto.infraestructure.entity.BienInmueble;
+import jakarta.persistence.Entity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,12 +18,14 @@ public class BienInmuebleMapper {
         dto.setEnUso(entity.getEnUso());
         dto.setEnAlquiler(entity.getEnAlquiler());
         dto.setEstado(entity.getEstado());
-        dto.setUsuaCrea(entity.getUsuaCrea());
-        dto.setDateCreate(entity.getDateCreate());
-        dto.setUsuaModif(entity.getUsuaModif());
-        dto.setDateModif(entity.getDateModif());
-        dto.setUsuaDelet(entity.getUsuaDelet());
-        dto.setDateDelet(entity.getDateDelet());
+        dto.setUsuarioCreacion(entity.getUsuarioCreacion());
+        dto.setFechaCreacion(entity.getFechaCreacion());
+        dto.setUsuarioModificacion(entity.getUsuarioModificacion());
+        dto.setFechaModificacion(entity.getFechaModificacion());
+        dto.setUsuarioActualizacion(entity.getUsuarioActualizacion());
+        dto.setFechaActualizacion(entity.getFechaActualizacion());
+        dto.setUsuarioEliminacion(entity.getUsuarioEliminacion());
+        dto.setFechaEliminacion(entity.getFechaEliminacion());
         return dto;
     }
 }

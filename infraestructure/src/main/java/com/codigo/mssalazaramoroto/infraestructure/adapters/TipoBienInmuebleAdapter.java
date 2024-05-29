@@ -1,5 +1,4 @@
 package com.codigo.mssalazaramoroto.infraestructure.adapters;
-
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoBienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoBienInmuebleRequest;
@@ -59,8 +58,8 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
         Optional<TipoBienInmueble> tipoBienInmuebleRecuperado = tipoBienInmuebleRepository.findById(id);
         if (tipoBienInmuebleRecuperado.isPresent()) {
             tipoBienInmuebleRecuperado.get().setEstado(Constant.STATUS_INACTIVE);
-            tipoBienInmuebleRecuperado.get().setUsuaDelet(Constant.USU_ADMIN);
-            tipoBienInmuebleRecuperado.get().setDateDelet(getTimestamp());
+            tipoBienInmuebleRecuperado.get().setUsuarioEliminacion(Constant.USU_ADMIN);
+            tipoBienInmuebleRecuperado.get().setFechaEliminacion(getTimestamp());
             return TipoBienInmuebleMapper.fromEntity(tipoBienInmuebleRepository.save(tipoBienInmuebleRecuperado.get()));
         } else {
             throw new RuntimeException("No se encontró el Tipo Bien Inmueble");
@@ -73,13 +72,13 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
         entity.setEstado(tipoBienInmuebleRequest.getEstado());
         if (actualiza) {
             entity.setId(id);
-            entity.setUsuaCrea(Constant.USU_ADMIN);
-            entity.setDateCreate(getTimestamp());
-            entity.setUsuaModif(Constant.USU_ADMIN);
-            entity.setDateModif(getTimestamp());
+            entity.setUsuarioCreacion(Constant.USU_ADMIN);
+            entity.setFechaCreacion(getTimestamp());
+            entity.setUsuarioModificacion(Constant.USU_ADMIN);
+            entity.setFechaModificacion(getTimestamp());
         } else {
-            entity.setUsuaCrea(Constant.USU_ADMIN);
-            entity.setDateCreate(getTimestamp());
+            entity.setUsuarioCreacion(Constant.USU_ADMIN);
+            entity.setFechaCreacion(getTimestamp());
         }
         return entity;
     }

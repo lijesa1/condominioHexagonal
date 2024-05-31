@@ -1,13 +1,10 @@
 package com.codigo.mssalazaramoroto.infraestructure.entity;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.sql.Timestamp;
-
 
 @Entity
 @Setter
@@ -41,6 +38,9 @@ public class BienInmueble {
 
     @Column(name = "en_alquiler", nullable = false)
     private Boolean enAlquiler;
+
+    @Column(name = "placa", nullable = false)
+    private String numPlaca;
 
 
 

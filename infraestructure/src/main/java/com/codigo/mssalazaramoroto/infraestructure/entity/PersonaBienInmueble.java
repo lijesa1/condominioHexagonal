@@ -19,8 +19,6 @@ public class PersonaBienInmueble {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     @Column(name = "estado", nullable = true)
     private String estado;
 
@@ -48,8 +46,6 @@ public class PersonaBienInmueble {
     @Column(name = "fecha_eliminacion", nullable = true)
     private Timestamp fechaEliminacion;
 
-
-
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bien_inmueble_id", nullable = false)
@@ -58,8 +54,4 @@ public class PersonaBienInmueble {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
-
-
-
-
 }

@@ -1,8 +1,6 @@
 package com.codigo.mssalazaramoroto.infraestructure.entity;
-
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -21,8 +19,6 @@ public class TipoBienInmueble {
 
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
-
-
 
     @Column(name = "estado", nullable = true)
     private String estado;
@@ -53,10 +49,4 @@ public class TipoBienInmueble {
 
     /*@OneToMany(targetEntity = BienInmueble.class, fetch = FetchType.LAZY, mappedBy = "tipoBienInmueble")
     private List<BienInmueble> bienInmuebleList;*/
-
-
-
-
-
-
 }

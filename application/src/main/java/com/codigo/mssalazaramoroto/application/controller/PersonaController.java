@@ -1,10 +1,6 @@
 package com.codigo.mssalazaramoroto.application.controller;
-
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.BienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
-import com.codigo.mssalazaramoroto.domain.aggregates.request.BienInmuebleRequest;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaRequest;
-import com.codigo.mssalazaramoroto.domain.ports.in.BienInmuebleServiceIn;
 import com.codigo.mssalazaramoroto.domain.ports.in.PersonaServiceIn;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

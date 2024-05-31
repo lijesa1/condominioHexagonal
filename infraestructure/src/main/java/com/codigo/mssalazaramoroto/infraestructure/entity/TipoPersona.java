@@ -1,10 +1,7 @@
 package com.codigo.mssalazaramoroto.infraestructure.entity;
-
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
 @Setter

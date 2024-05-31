@@ -1,7 +1,5 @@
 package com.codigo.mssalazaramoroto.infraestructure.mapper;
-
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaBienInmuebleDto;
-
 import com.codigo.mssalazaramoroto.infraestructure.entity.PersonaBienInmueble;
 import org.springframework.stereotype.Service;
 

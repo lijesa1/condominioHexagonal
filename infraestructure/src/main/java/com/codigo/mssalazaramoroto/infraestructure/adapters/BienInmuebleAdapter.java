@@ -1,5 +1,4 @@
 package com.codigo.mssalazaramoroto.infraestructure.adapters;
-
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.BienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.BienInmuebleRequest;

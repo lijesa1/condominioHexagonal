@@ -1,5 +1,4 @@
 package com.codigo.mssalazaramoroto.infraestructure.mapper;
-
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
 import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import org.springframework.stereotype.Service;

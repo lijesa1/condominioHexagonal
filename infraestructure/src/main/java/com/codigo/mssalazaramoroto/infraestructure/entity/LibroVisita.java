@@ -1,12 +1,10 @@
 package com.codigo.mssalazaramoroto.infraestructure.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -24,13 +22,8 @@ public class LibroVisita {
     @Column(name = "fecha_visita", nullable = false)
     private Date fechaVisita;
 
-   // @Column(name = "usuario_creacion", nullable = false)
-    //private String usuarioCreacion;
-
     @Column(name = "observaciones_libro_visita", nullable = false)
     private String observacionesLibroVisita;
-
-
 
     @Column(name = "estado", nullable = true)
     private String estado;

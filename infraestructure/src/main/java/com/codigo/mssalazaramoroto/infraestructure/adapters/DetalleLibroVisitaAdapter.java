@@ -1,20 +1,13 @@
 package com.codigo.mssalazaramoroto.infraestructure.adapters;
-
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.DetalleLibroVisitaDto;
-
 import com.codigo.mssalazaramoroto.domain.aggregates.request.DetalleLibroVisitaRequest;
-
 import com.codigo.mssalazaramoroto.domain.ports.out.DetalleLibroVisitaServiceOut;
 import com.codigo.mssalazaramoroto.infraestructure.dao.DetalleLibroVisitaRepository;
 import com.codigo.mssalazaramoroto.infraestructure.entity.DetalleLibroVisita;
-
 import com.codigo.mssalazaramoroto.infraestructure.mapper.DetalleLibroVisitaMapper;
-
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;

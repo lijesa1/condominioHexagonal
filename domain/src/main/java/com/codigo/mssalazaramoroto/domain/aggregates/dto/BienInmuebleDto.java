@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 @Getter
 @Setter
@@ -18,6 +18,7 @@ public class BienInmuebleDto {
     private String numComercio;
     private Boolean enUso;
     private Boolean enAlquiler;
+    private String numPlaca;
 
 
 

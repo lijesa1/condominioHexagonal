@@ -1,14 +1,11 @@
 package com.codigo.mssalazaramoroto.infraestructure.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
 @Setter
@@ -26,9 +23,6 @@ public class DetalleLibroVisita {
 
     @Column(name = "estado_visitante", nullable = false)
     private Boolean estadoVisitante;
-
-
-
 
     @Column(name = "estado", nullable = true)
     private String estado;
@@ -69,14 +63,5 @@ public class DetalleLibroVisita {
     @ManyToOne(targetEntity = Persona.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
-
-
-
-
-
-
-
-
-
 
 }

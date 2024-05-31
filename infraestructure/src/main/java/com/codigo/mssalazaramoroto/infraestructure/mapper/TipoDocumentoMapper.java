@@ -1,5 +1,4 @@
 package com.codigo.mssalazaramoroto.infraestructure.mapper;
-
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoDocumentoDto;
 import com.codigo.mssalazaramoroto.infraestructure.entity.TipoDocumento;
 import org.springframework.stereotype.Service;

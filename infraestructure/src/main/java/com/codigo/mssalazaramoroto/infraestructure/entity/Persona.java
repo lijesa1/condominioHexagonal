@@ -29,30 +29,30 @@ public class Persona {
     @Column(name = "apellido_paterno")
     private String apellidoPaterno;
 
-    @Column(name = "apellido_materno", nullable = false)
+    @Column(name = "apellido_materno", nullable = true)
     private String apellidoMaterno;
 
-    @Column(name = "celular", nullable = false)
+    @Column(name = "celular", nullable = true)
     @Size(min = 9)
     @Size(max = 9)
     private String celular;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = true)
     @Email
     private String email;
 
-    @Column(name = "num_documento", nullable = false)
+    @Column(name = "num_documento", nullable = true)
     @Size(min = 8)
     @Size(max = 8)
     private String numDocumento;
 
-    @Column(name = "fecha_nac", nullable = false)
+    @Column(name = "fecha_nac", nullable = true)
     private Date fechaNac;
 
-    @Column(name = "login", nullable = false)
+    @Column(name = "login", nullable = true)
     private String login;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = true)
     @Size(min = 8)
     private String password;
 
@@ -64,12 +64,6 @@ public class Persona {
 
     @Column(name = "fecha_creacion", nullable = true)
     private Timestamp fechaCreacion;
-
-    @Column(name = "usuario_modificacion", nullable = true)
-    private String usuarioModificacion;
-
-    @Column(name = "fecha_modificacion", nullable = true)
-    private Timestamp fechaModificacion;
 
     @Column(name = "usuario_actualizacion", nullable = true)
     private String usuarioActualizacion;
@@ -84,8 +78,8 @@ public class Persona {
     private Timestamp fechaEliminacion;
 
     @JsonIgnore
-    @ManyToOne(targetEntity = TipoDocumento.class, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "tipo_documento_id")
+    @ManyToOne(optional = true, targetEntity = TipoDocumento.class, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "tipo_documento_id", nullable = true)
     private TipoDocumento tipoDocumento;
 
     @ManyToOne(targetEntity = TipoPersona.class)

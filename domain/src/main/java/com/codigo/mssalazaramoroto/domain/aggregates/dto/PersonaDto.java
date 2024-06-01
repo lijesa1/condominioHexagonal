@@ -21,13 +21,9 @@ public class PersonaDto {
     private Date fechaNac;
     private String login;
     private String password;
-
-
     private String estado;
     private String usuarioCreacion;
     private Timestamp fechaCreacion;
-    private String usuarioModificacion;
-    private Timestamp fechaModificacion;
     private String usuarioActualizacion;
     private Timestamp fechaActualizacion;
     private String usuarioEliminacion;

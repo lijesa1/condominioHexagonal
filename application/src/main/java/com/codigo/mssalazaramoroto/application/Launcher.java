@@ -35,7 +35,7 @@ public class Launcher {
     CommandLineRunner init(TipoBienInmuebleRepository tipoBienInmuebleRepository, TipoDocumentoRepository tipoDocumentoRepository, TipoPersonaRepository tipoPersonaRepository) {
         return args -> {
             // Crear los 3 TipoBienInmueble
-            /*TipoBienInmueble tipoBienInmuebleDpto = TipoBienInmueble.builder()
+            TipoBienInmueble tipoBienInmuebleDpto = TipoBienInmueble.builder()
                     .descripcion("Departamento")
                     .estado("Activo")
                     .usuarioCreacion(Constant.USU_ADMIN)
@@ -56,7 +56,7 @@ public class Launcher {
                     .fechaCreacion(getTimestamp())
                     .build();
             tipoBienInmuebleRepository.saveAll(List.of(tipoBienInmuebleDpto, tipoBienInmuebleEstacionamiento, tipoBienInmuebleComercio));
-*/
+
             // Crear los 3 tipos de documentos
             TipoDocumento tipoDocumentoDNI = TipoDocumento.builder()
                     .tipoDocumento("DNI")

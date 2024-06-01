@@ -2,7 +2,7 @@ package com.codigo.mssalazaramoroto.infraestructure.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Timestamp;
-
+@NamedQuery(name="TipoPersona.findByDescripcion", query = "select a from TipoPersona a where a.descripcion=:descripcion")
 @Entity
 @Setter
 @Getter

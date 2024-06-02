@@ -13,12 +13,6 @@ public interface ClientReniec {
     @GetMapping("/dni")
     ReniecResponse getInfoReniec(@RequestParam("numero") String numero,
                                  @RequestHeader("Authorization") String authorization);
-
-
-
-
-
-
 }
 
 

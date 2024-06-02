@@ -24,6 +24,10 @@ class TipoBienInmuebleAdapterTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    @Test
+    void crearTipoBienInmuebleOut() {
+    }
+
 /*
     @Test
        void testCrearTipoBienInmuebleExistente(){

@@ -1,12 +1,12 @@
 package com.codigo.mssalazaramoroto.domain.aggregates.response;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class ReniecResponse {
     private String nombres;
     private String apellidoPaterno;

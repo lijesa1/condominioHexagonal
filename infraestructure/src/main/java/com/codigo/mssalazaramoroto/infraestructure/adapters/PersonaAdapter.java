@@ -3,6 +3,7 @@ package com.codigo.mssalazaramoroto.infraestructure.adapters;
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.aggregates.response.ReniecResponse;
 import com.codigo.mssalazaramoroto.domain.ports.out.PersonaServiceOut;
 import com.codigo.mssalazaramoroto.infraestructure.client.ClientReniec;
@@ -20,7 +21,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,12 +40,37 @@ public class PersonaAdapter implements PersonaServiceOut {
     private String tokenApi;
 
     @Override
-    public PersonaDto crearPersonaOut(PersonaRequest personaRequest) {
-        Persona persona = getEntity(personaRequest, false, null);
-        return personaMapper.mapToDto(personaRepository.save(persona));
+    public BaseResponse crearPersonaOut(PersonaRequest personaRequest) {
+        boolean exist = personaRepository.existsByNumDocumento(personaRequest.getNumDocumento());
+        if (exist) {
+            return new BaseResponse<Persona>(Constant.CODE_EXIST, Constant.MSG_EXIST, new Persona());
+        } else {
+            Persona persona = getEntity(personaRequest, false, null);
+            return personaMapper.mapToDto(personaRepository.save(persona));
+        }
     }
 
     @Override
+    public List<PersonaDto> buscarTodosOut() {
+        return List.of();
+    }
+
+    @Override
+    public Optional<PersonaDto> buscarPorIdOut(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public PersonaDto actualizarOut(Long id, PersonaRequest personaRequest) {
+        return null;
+    }
+
+    @Override
+    public PersonaDto eliminarOut(Long id) {
+        return null;
+    }
+
+    /*@Override
     public List<PersonaDto> buscarTodosOut() {
         List<PersonaDto> personaDtoList = new ArrayList<>();
         List<Persona> entities = personaRepository.findAll();
@@ -54,9 +79,9 @@ public class PersonaAdapter implements PersonaServiceOut {
             personaDtoList.add(personaDto);
         }
         return personaDtoList;
-    }
+    }*/
 
-    @Override
+  /*  @Override
     public Optional<PersonaDto> buscarPorIdOut(Long id) {
         String redisInfo = redisService.getFromRedis(Constant.REDIS_KEY_OBTENERPERSONA + id);
         if (redisInfo != null) {
@@ -68,9 +93,9 @@ public class PersonaAdapter implements PersonaServiceOut {
             redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, redis, 10);
             return Optional.of(dto);
         }
-    }
+    }*/
 
-    @Override
+  /*  @Override
     public PersonaDto actualizarOut(Long id, PersonaRequest personaRequest) {
         Optional<Persona> personaRecuperada = personaRepository.findById(id);
         if (personaRecuperada.isPresent()) {
@@ -79,9 +104,9 @@ public class PersonaAdapter implements PersonaServiceOut {
         } else {
             throw new RuntimeException("No se encontro la persona");
         }
-    }
+    }*/
 
-    @Override
+/*    @Override
     public PersonaDto eliminarOut(Long id) {
         Optional<Persona> personaRecuperada = personaRepository.findById(id);
         if (personaRecuperada.isPresent()) {
@@ -92,8 +117,7 @@ public class PersonaAdapter implements PersonaServiceOut {
         } else {
             throw new RuntimeException("No se encontró la persona");
         }
-
-    }
+    }*/
 
 
     private Persona getEntity(PersonaRequest personaRequest, boolean actualiza, Long id) {

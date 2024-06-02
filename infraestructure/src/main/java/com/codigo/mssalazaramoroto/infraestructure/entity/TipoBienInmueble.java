@@ -29,12 +29,6 @@ public class TipoBienInmueble {
     @Column(name = "fecha_creacion", nullable = true)
     private Timestamp fechaCreacion;
 
-    @Column(name = "usuario_modificacion", nullable = true)
-    private String usuarioModificacion;
-
-    @Column(name = "fecha_modificacion", nullable = true)
-    private Timestamp fechaModificacion;
-
     @Column(name = "usuario_actualizacion", nullable = true)
     private String usuarioActualizacion;
 

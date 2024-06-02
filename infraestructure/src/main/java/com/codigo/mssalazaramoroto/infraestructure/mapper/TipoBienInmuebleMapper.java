@@ -12,8 +12,6 @@ public class TipoBienInmuebleMapper {
         dto.setEstado(entity.getEstado());
         dto.setUsuarioCreacion(entity.getUsuarioCreacion());
         dto.setFechaCreacion(entity.getFechaCreacion());
-        dto.setUsuarioModificacion(entity.getUsuarioModificacion());
-        dto.setFechaModificacion(entity.getFechaModificacion());
         dto.setUsuarioActualizacion(entity.getUsuarioActualizacion());
         dto.setFechaActualizacion(entity.getFechaActualizacion());
         dto.setUsuarioEliminacion(entity.getUsuarioEliminacion());

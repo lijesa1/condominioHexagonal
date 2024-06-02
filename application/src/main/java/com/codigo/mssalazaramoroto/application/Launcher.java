@@ -31,7 +31,7 @@ public class Launcher {
         SpringApplication.run(Launcher.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner init(TipoBienInmuebleRepository tipoBienInmuebleRepository, TipoDocumentoRepository tipoDocumentoRepository, TipoPersonaRepository tipoPersonaRepository) {
         return args -> {
             // Crear los 3 TipoBienInmueble
@@ -106,7 +106,7 @@ public class Launcher {
 
             tipoPersonaRepository.saveAll(List.of(tipoPersonaPropietario, tipoPersonaVigilante, tipoPersonaLimpieza));
         };
-    }
+    }*/
 
     private Timestamp getTimestamp() {
         long currenTime = System.currentTimeMillis();

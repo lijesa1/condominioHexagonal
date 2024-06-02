@@ -2,6 +2,7 @@ package com.codigo.mssalazaramoroto.domain.impl;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.PersonaServiceIn;
 
 import com.codigo.mssalazaramoroto.domain.ports.out.PersonaServiceOut;
@@ -18,7 +19,7 @@ public class PersonaServiceImpl implements PersonaServiceIn {
     private final PersonaServiceOut personaServiceOut;
 
     @Override
-    public PersonaDto crearPersonaServiceIn(PersonaRequest personaRequest) {
+    public BaseResponse crearPersonaServiceIn(PersonaRequest personaRequest) {
         return personaServiceOut.crearPersonaOut(personaRequest);
     }
 

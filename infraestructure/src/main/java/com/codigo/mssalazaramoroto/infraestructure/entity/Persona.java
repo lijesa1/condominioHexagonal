@@ -3,19 +3,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
-
+//@NamedQuery(name = "Persona.findByNumDocumento", query ="select p from Persona p where p.numDocumento=:numDocumento")
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "persona")
 
 public class Persona {
@@ -23,7 +22,7 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombres", nullable = false)
+    @Column(name = "nombres", nullable = true)
     private String nombre;
 
     @Column(name = "apellido_paterno")
@@ -32,7 +31,7 @@ public class Persona {
     @Column(name = "apellido_materno", nullable = true)
     private String apellidoMaterno;
 
-    @Column(name = "celular", nullable = true)
+    @Column(name = "celular", unique = true, nullable = true)
     @Size(min = 9)
     @Size(max = 9)
     private String celular;

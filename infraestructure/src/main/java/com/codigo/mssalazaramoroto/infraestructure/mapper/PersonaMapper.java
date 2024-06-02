@@ -1,6 +1,8 @@
 package com.codigo.mssalazaramoroto.infraestructure.mapper;
 
+import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
@@ -9,10 +11,8 @@ import org.modelmapper.ModelMapper;
 public class PersonaMapper {
     private static final ModelMapper modelMapper = new ModelMapper();
 
-    public PersonaDto mapToDto(Persona entity){
-        return modelMapper.map(entity, PersonaDto.class);
-
-
+    public BaseResponse mapToDto(Persona entity){
+        return new BaseResponse<Persona>(Constant.CODE_NOEXIST,Constant.MSG_OK,mapToEntity(modelMapper.map(entity, PersonaDto.class)));
     }
 
     public Persona mapToEntity(PersonaDto personaDto){

@@ -72,10 +72,8 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
         entity.setEstado(tipoBienInmuebleRequest.getEstado());
         if (actualiza) {
             entity.setId(id);
-            entity.setUsuarioCreacion(Constant.USU_ADMIN);
-            entity.setFechaCreacion(getTimestamp());
-            entity.setUsuarioModificacion(Constant.USU_ADMIN);
-            entity.setFechaModificacion(getTimestamp());
+            entity.setUsuarioActualizacion(Constant.USU_ADMIN);
+            entity.setFechaActualizacion(getTimestamp());
         } else {
             entity.setUsuarioCreacion(Constant.USU_ADMIN);
             entity.setFechaCreacion(getTimestamp());

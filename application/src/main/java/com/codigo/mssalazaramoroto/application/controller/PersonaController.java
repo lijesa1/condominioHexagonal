@@ -1,6 +1,7 @@
 package com.codigo.mssalazaramoroto.application.controller;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.PersonaServiceIn;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class PersonaController {
     private final PersonaServiceIn personaServiceIn;
 
     @PostMapping
-    public ResponseEntity<PersonaDto> registrar(@RequestBody PersonaRequest personaRequest) {
+    public ResponseEntity<BaseResponse> registrar(@RequestBody PersonaRequest personaRequest) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(personaServiceIn.crearPersonaServiceIn(personaRequest));

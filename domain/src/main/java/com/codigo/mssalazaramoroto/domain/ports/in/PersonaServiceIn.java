@@ -2,12 +2,14 @@ package com.codigo.mssalazaramoroto.domain.ports.in;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface PersonaServiceIn {
-    PersonaDto crearPersonaServiceIn(PersonaRequest personaRequest);
+    BaseResponse crearPersonaServiceIn(PersonaRequest personaRequest);
 
     List<PersonaDto> obtenerTodosIn();
 

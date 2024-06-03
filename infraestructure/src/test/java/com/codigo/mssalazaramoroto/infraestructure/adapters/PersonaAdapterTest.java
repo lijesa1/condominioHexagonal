@@ -1,7 +1,6 @@
 package com.codigo.mssalazaramoroto.infraestructure.adapters;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.ReniecDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaRequest;
 import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.aggregates.response.ReniecResponse;
@@ -20,13 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -112,6 +105,8 @@ class PersonaAdapterTest {
         assertEquals(Constant.CODE_EXIST, response.getCode());
         assertEquals(Constant.MSG_EXIST, response.getMessage());
     }
+
+
 
    /* @Test
     void testCrearPersonaNueva() {

@@ -2,6 +2,7 @@ package com.codigo.mssalazaramoroto.application.controller;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoBienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoBienInmuebleRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.TipoBienInmuebleServiceIn;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class TipoBienInmuebleController {
     private final TipoBienInmuebleServiceIn tipoBienInmuebleServiceIn;
 
     @PostMapping
-    public ResponseEntity<TipoBienInmuebleDto> registrar(@RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+    public ResponseEntity<BaseResponse> registrar(@RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(tipoBienInmuebleServiceIn.crearTipoBienInmuebleServiceIn(tipoBienInmuebleRequest));

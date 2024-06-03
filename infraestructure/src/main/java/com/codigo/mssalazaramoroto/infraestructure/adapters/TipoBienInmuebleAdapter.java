@@ -1,10 +1,12 @@
 package com.codigo.mssalazaramoroto.infraestructure.adapters;
+
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoBienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoBienInmuebleRequest;
-
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.out.TipoBienInmuebleServiceOut;
 import com.codigo.mssalazaramoroto.infraestructure.dao.TipoBienInmuebleRepository;
+import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import com.codigo.mssalazaramoroto.infraestructure.entity.TipoBienInmueble;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.TipoBienInmuebleMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +21,40 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
     private final TipoBienInmuebleRepository tipoBienInmuebleRepository;
+    private final TipoBienInmuebleMapper tipoBienInmuebleMapper;
 
     @Override
-    public TipoBienInmuebleDto crearTipoBienInmuebleOut(TipoBienInmuebleRequest tipoBienInmuebleRequest) {
-        TipoBienInmueble tipoBienInmuebleEntity = getEntity(tipoBienInmuebleRequest, false, null);
-        return TipoBienInmuebleMapper.fromEntity(tipoBienInmuebleRepository.save(tipoBienInmuebleEntity));
+    public BaseResponse crearTipoBienInmuebleOut(TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+        boolean exist = tipoBienInmuebleRepository.existsByDescripcion(tipoBienInmuebleRequest.getDescripcion());
+        if (exist) {
+            return new BaseResponse<TipoBienInmueble>(Constant.CODE_EXIST, Constant.MSG_EXIST, new TipoBienInmueble());
+        } else {
+            TipoBienInmueble tipoBienInmuebleEntity = getEntity(tipoBienInmuebleRequest, false, null);
+            return tipoBienInmuebleMapper.mapToDto(tipoBienInmuebleRepository.save(tipoBienInmuebleEntity));
+        }
     }
 
     @Override
+    public List<TipoBienInmuebleDto> buscarTodosOut() {
+        return List.of();
+    }
+
+    @Override
+    public Optional<TipoBienInmuebleDto> buscarPorIdOut(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public TipoBienInmuebleDto actualizarOut(Long id, TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+        return null;
+    }
+
+    @Override
+    public TipoBienInmuebleDto eliminarOut(Long id) {
+        return null;
+    }
+
+    /*@Override
     public List<TipoBienInmuebleDto> buscarTodosOut() {
         List<TipoBienInmuebleDto> listaDto = new ArrayList<>();
         List<TipoBienInmueble> entidades = tipoBienInmuebleRepository.findAll();
@@ -64,7 +92,7 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
         } else {
             throw new RuntimeException("No se encontró el Tipo Bien Inmueble");
         }
-    }
+    }*/
 
     private TipoBienInmueble getEntity(TipoBienInmuebleRequest tipoBienInmuebleRequest, boolean actualiza, Long id) {
         TipoBienInmueble entity = new TipoBienInmueble();

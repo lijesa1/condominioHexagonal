@@ -14,14 +14,9 @@ public class PersonaMapper {
     public BaseResponse mapToDto(Persona entity){
         return new BaseResponse<Persona>(Constant.CODE_NOEXIST,Constant.MSG_OK,mapToEntity(modelMapper.map(entity, PersonaDto.class)));
     }
-
     public Persona mapToEntity(PersonaDto personaDto){
         return modelMapper.map(personaDto, Persona.class);
     }
-
-
-
-
 
     /*
     public static PersonaDto fromEntity(Persona entity) {

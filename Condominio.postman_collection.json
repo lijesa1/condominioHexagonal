@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"raw": "{\r\n    \"descripcion\": \"Departamento\",\r\n    \"estado\": \"Activo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,7 +79,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -87,7 +87,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble/2",
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -97,7 +97,7 @@
 						"ms-condominio",
 						"v1",
 						"tipoBienInmueble",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -110,7 +110,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"descripcion\":\"Departamento\"\r\n}",
+					"raw": "{\r\n\"descripcion\":\"Departamento Duplex\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -118,7 +118,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble",
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoBienInmueble/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,7 +127,8 @@
 					"path": [
 						"ms-condominio",
 						"v1",
-						"tipoBienInmueble"
+						"tipoBienInmueble",
+						"1"
 					]
 				}
 			},
@@ -546,9 +547,447 @@
 			"response": []
 		},
 		{
-			"name": "Persona-crear",
+			"name": "TipoPersona-buscarPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoPersona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoPersona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoPersona-actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoPersona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoPersona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoPersona-eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/tipoPersona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"tipoPersona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-crearPropietario",
 			"request": {
 				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numDocumento\":\"41181961\",\r\n    \"tipoDocumento\":\"DNI\",\r\n    \"tipoPersona\": \"Propietario\",\r\n    \"celular\": \"999888777\",\r\n    \"email\":\"abc@gmail.com\",\r\n    \"fechaNac\":\"2000-01-01\",\r\n    \"login\":\"superwoman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-crearVigilante",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numDocumento\":\"41185070\",\r\n    \"tipoDocumento\":\"DNI\",\r\n    \"tipoPersona\": \"Vigilante\",\r\n    \"celular\": \"999666555\",\r\n    \"email\":\"wercxtq@gmail.com\",\r\n    \"fechaNac\":\"2000-02-01\",\r\n    \"login\":\"superguachi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-crearLimpieza",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numDocumento\":\"41181962\",\r\n    \"tipoDocumento\":\"DNI\",\r\n    \"tipoPersona\": \"Limpieza\",\r\n    \"celular\": \"999665598\",\r\n    \"email\":\"qwqwerer@gmail.com\",\r\n    \"fechaNac\":\"2000-03-01\",\r\n    \"login\":\"supercleaner\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-buscarTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-buscarPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"000000000\",\r\n    \"email\":\"xyz@gmail.com\",\r\n    \"numDocumento\":\"41181961\",\r\n    \"tipoDocumento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-bien-inmueble-crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-bien-inmueble-buscarTodos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-bien-inmueble-buscarPorId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-bien-inmueble-actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/ms-condominio/v1/persona",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"ms-condominio",
+						"v1",
+						"persona"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persona-bien-inmueble-eliminar",
+			"request": {
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",

@@ -177,8 +177,11 @@ public class Constant {
     public static final Integer CODE_GET_ID_PERSONA_KO = 23001;
     public static final String MSG_GET_ID_PERSONA_KO = "No se encontró la Persona";
 
+    public static final Integer CODE_GET_ID_PERSONA_REDIS_OK = 23002;
+    public static final String MSG_GET_ID_PERSONA__REDIS_OK = "Se encontró una Persona desde la caché";
+
     public static final Integer CODE_GET_ID_PERSONA_OK = 23000;
-    public static final String MSG_GET_ID_PERSONA_OK = "Se encontró una Persona";
+    public static final String MSG_GET_ID_PERSONA_OK = "Se encontró una Persona en la BD";
 
     // Put
     public static final Integer CODE_PUT_PERSONA_KO = 24001;

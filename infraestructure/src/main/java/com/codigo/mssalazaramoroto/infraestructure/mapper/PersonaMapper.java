@@ -7,12 +7,14 @@ import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
+import java.util.Optional;
+
 @Service
 public class PersonaMapper {
     private static final ModelMapper modelMapper = new ModelMapper();
 
-    public BaseResponse mapToDto(Persona entity){
-        return new BaseResponse<Persona>(Constant.CODE_NOEXIST,Constant.MSG_OK,mapToEntity(modelMapper.map(entity, PersonaDto.class)));
+    public PersonaDto mapToDto(Optional<Persona> entity){
+        return modelMapper.map(entity, PersonaDto.class);
     }
     public Persona mapToEntity(PersonaDto personaDto){
         return modelMapper.map(personaDto, Persona.class);

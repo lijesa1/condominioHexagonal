@@ -18,7 +18,9 @@ import com.codigo.mssalazaramoroto.infraestructure.redis.RedisService;
 import com.codigo.mssalazaramoroto.infraestructure.util.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +36,10 @@ public class PersonaAdapter implements PersonaServiceOut {
     private final RedisService redisService;
     private final Util util;
 
-
     @Value("${token.reniec}")
     private String tokenApi;
 
-    @Override
+    /*@Override
     public BaseResponse crearPersonaOut(PersonaRequest personaRequest) {
         boolean exist = personaRepository.existsByNumDocumento(personaRequest.getNumDocumento());
         if (exist) {
@@ -47,27 +48,8 @@ public class PersonaAdapter implements PersonaServiceOut {
             Persona persona = getEntity(personaRequest, false, null);
             return personaMapper.mapToDto(personaRepository.save(persona));
         }
-    }
+    }*/
 
-    @Override
-    public List<PersonaDto> buscarTodosOut() {
-        return List.of();
-    }
-
-    @Override
-    public Optional<PersonaDto> buscarPorIdOut(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public PersonaDto actualizarOut(Long id, PersonaRequest personaRequest) {
-        return null;
-    }
-
-    @Override
-    public PersonaDto eliminarOut(Long id) {
-        return null;
-    }
 
     /*@Override
     public List<PersonaDto> buscarTodosOut() {
@@ -118,7 +100,6 @@ public class PersonaAdapter implements PersonaServiceOut {
         }
     }*/
 
-
     private Persona getEntity(PersonaRequest personaRequest, boolean actualiza, Long id) {
         ReniecResponse reniecResponse = getExecutionReniec(personaRequest.getNumDocumento());
         TipoDocumento tipoDocumento = tipoDocumentoRepository.findByDescripcion(personaRequest.getTipoDocumento());
@@ -151,9 +132,93 @@ public class PersonaAdapter implements PersonaServiceOut {
         return reniecResponse;
     }
 
-
     private Timestamp getTimestamp() {
         long currenTime = System.currentTimeMillis();
         return new Timestamp(currenTime);
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> crearPersonaOut(PersonaRequest personaRequest) {
+        boolean exist = personaRepository.existsByNumDocumento(personaRequest.getNumDocumento());
+        BaseResponse baseResponse = new BaseResponse();
+        if (!exist) {
+            Persona persona = getEntity(personaRequest, false, null);
+            baseResponse.setCode(Constant.CODE_POST_PERSONA_OK);
+            baseResponse.setMessage(Constant.MSG_POST_PERSONA_OK);
+            baseResponse.setEntidad(personaRepository.save(persona));
+        } else {
+            baseResponse.setCode(Constant.CODE_POST_PERSONA_KO);
+            baseResponse.setMessage(Constant.MSG_POST_PERSONA_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> buscarTodosOut() {
+        BaseResponse baseResponse = new BaseResponse();
+        List<Persona> personas = personaRepository.findAll();
+        if (!personas.isEmpty()) {
+            baseResponse.setCode(Constant.CODE_GET_TODOS_PERSONA_OK);
+            baseResponse.setMessage(Constant.MSG_GET_TODOS_PERSONA_OK);
+            baseResponse.setEntidad(personas);
+        } else {
+            baseResponse.setCode(Constant.CODE_GET_TODOS_PERSONA_KO);
+            baseResponse.setMessage(Constant.MSG_GET_TODOS_PERSONA_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> buscarPorIdOut(Long id) {
+        BaseResponse baseResponse = new BaseResponse();
+        Optional<Persona> persona = personaRepository.findById(id);
+        if (persona.isPresent()) {
+            baseResponse.setCode(Constant.CODE_GET_ID_PERSONA_OK);
+            baseResponse.setMessage(Constant.MSG_GET_ID_PERSONA_OK);
+            baseResponse.setEntidad(persona);
+        } else {
+            baseResponse.setCode(Constant.CODE_GET_ID_PERSONA_KO);
+            baseResponse.setMessage(Constant.MSG_GET_ID_PERSONA_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> actualizarOut(Long id, PersonaRequest personaRequest) {
+        BaseResponse baseResponse = new BaseResponse();
+        Optional<Persona> personaRecuperada = personaRepository.findById(id);
+        if (personaRecuperada.isPresent()) {
+            Persona persona = getEntity(personaRequest, true, id);
+            baseResponse.setCode(Constant.CODE_PUT_PERSONA_OK);
+            baseResponse.setMessage(Constant.MSG_PUT_PERSONA_OK);
+            baseResponse.setEntidad(personaRepository.save(persona));
+        } else {
+            baseResponse.setCode(Constant.CODE_PUT_PERSONA_KO);
+            baseResponse.setMessage(Constant.MSG_PUT_PERSONA_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> eliminarOut(Long id) {
+        BaseResponse baseResponse = new BaseResponse();
+        Optional<Persona> personaRecuperada = personaRepository.findById(id);
+        if (personaRecuperada.isPresent()) {
+            personaRecuperada.get().setEstado(Constant.STATUS_INACTIVE);
+            personaRecuperada.get().setUsuarioEliminacion(Constant.USU_ADMIN);
+            personaRecuperada.get().setFechaEliminacion(getTimestamp());
+            baseResponse.setCode(Constant.CODE_DELETE_PERSONA_OK);
+            baseResponse.setMessage(Constant.MSG_DELETE_PERSONA_OK);
+            baseResponse.setEntidad(personaRepository.save(personaRecuperada.get()));
+        } else {
+            baseResponse.setCode(Constant.CODE_DELETE_PERSONA_KO);
+            baseResponse.setMessage(Constant.MSG_DELETE_PERSONA_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
     }
 }

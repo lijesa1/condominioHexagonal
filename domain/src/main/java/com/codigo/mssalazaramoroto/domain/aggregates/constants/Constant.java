@@ -157,4 +157,40 @@ public class Constant {
 
     public static final Integer CODE_DELETE_TIPO_PERSONA_OK = 20000;
     public static final String MSG_DELETE_TIPO_PERSONA_OK = "Se eliminó un TipoBienInmueble";
+
+    // Mensajes Persona
+    // Post
+    public static final Integer CODE_POST_PERSONA_OK = 21000;
+    public static final String MSG_POST_PERSONA_OK = "Persona registrada satisfactoriamente";
+
+    public static final Integer CODE_POST_PERSONA_KO = 21001;
+    public static final String MSG_POST_PERSONA_KO = "Una Persona con esta descripción ya fue registrada anteriormente";
+
+    // Get Todos
+    public static final Integer CODE_GET_TODOS_PERSONA_KO = 22001;
+    public static final String MSG_GET_TODOS_PERSONA_KO = "Sin Personas registradas";
+
+    public static final Integer CODE_GET_TODOS_PERSONA_OK = 22000;
+    public static final String MSG_GET_TODOS_PERSONA_OK = "Listado de Personas registradas";
+
+    // Get ID
+    public static final Integer CODE_GET_ID_PERSONA_KO = 23001;
+    public static final String MSG_GET_ID_PERSONA_KO = "No se encontró la Persona";
+
+    public static final Integer CODE_GET_ID_PERSONA_OK = 23000;
+    public static final String MSG_GET_ID_PERSONA_OK = "Se encontró una Persona";
+
+    // Put
+    public static final Integer CODE_PUT_PERSONA_KO = 24001;
+    public static final String MSG_PUT_PERSONA_KO = "No se encontró la Persona a actualizar";
+
+    public static final Integer CODE_PUT_PERSONA_OK = 24000;
+    public static final String MSG_PUT_PERSONA_OK = "Se actualizó una Persona";
+
+    // Delete
+    public static final Integer CODE_DELETE_PERSONA_KO = 25001;
+    public static final String MSG_DELETE_PERSONA_KO = "No se encontró la Persona a eliminar";
+
+    public static final Integer CODE_DELETE_PERSONA_OK = 25000;
+    public static final String MSG_DELETE_PERSONA_OK = "Se eliminó una Persona";
 }

@@ -15,3 +15,8 @@ date_create, usua_modif, date_modif, usua_delet, date_delet  FROM tipo_documento
 -- TipoPersona
 SELECT id,descripcion,estado,usua_crea,
 date_create, usua_modif, date_modif, usua_delet, date_delet FROM tipo_persona;
+
+-- Persona
+SELECT id, nombres, apellido_paterno, apellido_materno, num_documento, celular, email,fecha_nac, estado,login, password, tipo_documento_id, 
+tipo_persona_id, usuario_creacion, fecha_creacion,usuario_actualizacion, fecha_actualizacion, usuario_eliminacion, fecha_eliminacion
+FROM persona;

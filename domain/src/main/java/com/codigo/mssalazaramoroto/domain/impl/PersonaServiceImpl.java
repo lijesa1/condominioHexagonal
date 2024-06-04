@@ -7,6 +7,7 @@ import com.codigo.mssalazaramoroto.domain.ports.in.PersonaServiceIn;
 
 import com.codigo.mssalazaramoroto.domain.ports.out.PersonaServiceOut;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,27 +20,31 @@ public class PersonaServiceImpl implements PersonaServiceIn {
     private final PersonaServiceOut personaServiceOut;
 
     @Override
-    public BaseResponse crearPersonaServiceIn(PersonaRequest personaRequest) {
+    public ResponseEntity<BaseResponse> crearPersonaServiceIn(PersonaRequest personaRequest) {
         return personaServiceOut.crearPersonaOut(personaRequest);
     }
 
     @Override
-    public List<PersonaDto> obtenerTodosIn() {
+    public
+    ResponseEntity<BaseResponse> obtenerTodosIn() {
         return personaServiceOut.buscarTodosOut();
     }
 
     @Override
-    public Optional<PersonaDto> buscarPorIdIn(Long id) {
+    public
+    ResponseEntity<BaseResponse> buscarPorIdIn(Long id) {
         return personaServiceOut.buscarPorIdOut(id);
     }
 
     @Override
-    public PersonaDto actualizarIn(Long id, PersonaRequest personaRequest) {
+    public
+    ResponseEntity<BaseResponse> actualizarIn(Long id, PersonaRequest personaRequest) {
         return personaServiceOut.actualizarOut(id, personaRequest);
     }
 
     @Override
-    public PersonaDto eliminarIn(Long id) {
+    public
+    ResponseEntity<BaseResponse> eliminarIn(Long id) {
         return personaServiceOut.eliminarOut(id);
     }
 }

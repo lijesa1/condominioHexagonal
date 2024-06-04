@@ -19,40 +19,26 @@ public class PersonaController {
 
     @PostMapping
     public ResponseEntity<BaseResponse> registrar(@RequestBody PersonaRequest personaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(personaServiceIn.crearPersonaServiceIn(personaRequest));
+        return personaServiceIn.crearPersonaServiceIn(personaRequest);
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonaDto>> buscarPersona() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaServiceIn.obtenerTodosIn());
+    public ResponseEntity<BaseResponse> buscarPersona() {
+        return personaServiceIn.obtenerTodosIn();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonaDto> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaServiceIn.buscarPorIdIn(id).get());
+    public ResponseEntity<BaseResponse> buscarPorId(@PathVariable Long id) {
+        return personaServiceIn.buscarPorIdIn(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PersonaDto> actualizar(@PathVariable Long id, @RequestBody PersonaRequest personaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaServiceIn.actualizarIn(id, personaRequest));
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody PersonaRequest personaRequest) {
+        return personaServiceIn.actualizarIn(id, personaRequest);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<PersonaDto> eliminar(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaServiceIn.eliminarIn(id));
-
+    public ResponseEntity<BaseResponse> eliminar(@PathVariable Long id) {
+        return personaServiceIn.eliminarIn(id);
     }
-
-
-
 }

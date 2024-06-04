@@ -2,6 +2,7 @@ package com.codigo.mssalazaramoroto.application.controller;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoPersonaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoPersonaRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.TipoPersonaServiceIn;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,37 +17,26 @@ public class  TipoPersonaController {
     private final TipoPersonaServiceIn tipoPersonaServiceIn;
 
     @PostMapping
-    public ResponseEntity<TipoPersonaDto> registrar(@RequestBody TipoPersonaRequest tipoPersonaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(tipoPersonaServiceIn.crearTipoPersonaServiceIn(tipoPersonaRequest));
+    public ResponseEntity<BaseResponse> registrar(@RequestBody TipoPersonaRequest tipoPersonaRequest) {
+        return tipoPersonaServiceIn.crearTipoPersonaServiceIn(tipoPersonaRequest);
     }
     @GetMapping
-    public ResponseEntity<List<TipoPersonaDto>> buscarTipoPersona() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoPersonaServiceIn.obtenerTodosIn());
+    public ResponseEntity<BaseResponse> buscarTipoPersona() {
+        return tipoPersonaServiceIn.obtenerTodosIn();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoPersonaDto> buscarTipoPersonaById(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoPersonaServiceIn.buscarPorIdIn(id).get());
+    public ResponseEntity<BaseResponse> buscarTipoPersonaById(@PathVariable Long id) {
+        return tipoPersonaServiceIn.buscarPorIdIn(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TipoPersonaDto> actualizar(@PathVariable Long id, @RequestBody TipoPersonaRequest tipoPersonaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoPersonaServiceIn.actualizarIn(id, tipoPersonaRequest));
-
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody TipoPersonaRequest tipoPersonaRequest) {
+        return tipoPersonaServiceIn.actualizarIn(id, tipoPersonaRequest);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<TipoPersonaDto> eliminar(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoPersonaServiceIn.eliminarIn(id));
+    public ResponseEntity<BaseResponse> eliminar(@PathVariable Long id) {
+        return tipoPersonaServiceIn.eliminarIn(id);
     }
 }

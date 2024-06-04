@@ -1,21 +1,19 @@
 package com.codigo.mssalazaramoroto.domain.ports.out;
 
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoPersonaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoPersonaRequest;
-
-import java.util.List;
-import java.util.Optional;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface TipoPersonaServiceOut {
 
-    TipoPersonaDto crearTipoPersonaOut(TipoPersonaRequest tipoPersonaRequest);
+    ResponseEntity<BaseResponse> crearTipoPersonaOut(TipoPersonaRequest tipoPersonaRequest);
 
-    List<TipoPersonaDto> buscarTodosOut();
+    ResponseEntity<BaseResponse> buscarTodosOut();
 
-    Optional<TipoPersonaDto> buscarPorIdOut(Long id);
+    ResponseEntity<BaseResponse> buscarPorIdOut(Long id);
 
-    TipoPersonaDto actualizarOut(Long id, TipoPersonaRequest TipoPersonaRequest);
+    ResponseEntity<BaseResponse> actualizarOut(Long id, TipoPersonaRequest TipoPersonaRequest);
 
-    TipoPersonaDto eliminarOut(Long id);
+    ResponseEntity<BaseResponse> eliminarOut(Long id);
 
 }

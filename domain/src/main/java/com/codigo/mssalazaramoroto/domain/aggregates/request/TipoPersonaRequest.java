@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class TipoPersonaRequest {
     private String descripcion;
-
+    private String estado;
 }

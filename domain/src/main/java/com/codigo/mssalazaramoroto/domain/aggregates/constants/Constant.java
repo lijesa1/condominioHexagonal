@@ -121,4 +121,40 @@ public class Constant {
 
     public static final Integer CODE_DELETE_TIPO_DOCUMENTO_OK = 15000;
     public static final String MSG_DELETE_TIPO_DOCUMENTO_OK = "Se eliminó un TipoBienInmueble";
+
+    // Mensajes TipoPersona
+    // Post
+    public static final Integer CODE_POST_TIPO_PERSONA_OK = 16000;
+    public static final String MSG_POST_TIPO_PERSONA_OK = "Tipo de Persona registrado satisfactoriamente";
+
+    public static final Integer CODE_POST_TIPO_PERSONA_KO = 16001;
+    public static final String MSG_POST_TIPO_PERSONA_KO = "Un tipo de Persona con esta descripción ya fue registrado anteriormente";
+
+    // Get Todos
+    public static final Integer CODE_GET_TODOS_TIPO_PERSONA_KO = 17001;
+    public static final String MSG_GET_TODOS_TIPO_PERSONA_KO = "Sin Tipos de Personas registrados";
+
+    public static final Integer CODE_GET_TODOS_TIPO_PERSONA_OK = 17000;
+    public static final String MSG_GET_TODOS_TIPO_PERSONA_OK = "Listado de Tipos de Personas registrados";
+
+    // Get Id
+    public static final Integer CODE_GET_ID_TIPO_PERSONA_KO = 18001;
+    public static final String MSG_GET_ID_TIPO_PERSONA_KO = "No se encontró el Tipo Persona";
+
+    public static final Integer CODE_GET_ID_TIPO_PERSONA_OK = 18000;
+    public static final String MSG_GET_ID_TIPO_PERSONA_OK = "Se encontró un Tipo Persona";
+
+    // Put
+    public static final Integer CODE_PUT_TIPO_PERSONA_KO = 19001;
+    public static final String MSG_PUT_TIPO_PERSONA_KO = "No se encontró el TipoPersona a actualizar";
+
+    public static final Integer CODE_PUT_TIPO_PERSONA_OK = 19000;
+    public static final String MSG_PUT_TIPO_PERSONA_OK = "Se actualizó un TipoPersona";
+
+    // Delete
+    public static final Integer CODE_DELETE_TIPO_PERSONA_KO = 20001;
+    public static final String MSG_DELETE_TIPO_PERSONA_KO = "No se encontró el TipoBienInmueble a eliminar";
+
+    public static final Integer CODE_DELETE_TIPO_PERSONA_OK = 20000;
+    public static final String MSG_DELETE_TIPO_PERSONA_OK = "Se eliminó un TipoBienInmueble";
 }

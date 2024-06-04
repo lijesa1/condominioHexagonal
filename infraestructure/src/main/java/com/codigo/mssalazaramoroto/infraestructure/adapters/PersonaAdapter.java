@@ -121,7 +121,7 @@ public class PersonaAdapter implements PersonaServiceOut {
 
     private Persona getEntity(PersonaRequest personaRequest, boolean actualiza, Long id) {
         ReniecResponse reniecResponse = getExecutionReniec(personaRequest.getNumDocumento());
-        TipoDocumento tipoDocumento = tipoDocumentoRepository.findByTipoDocumento(personaRequest.getTipoDocumento());
+        TipoDocumento tipoDocumento = tipoDocumentoRepository.findByDescripcion(personaRequest.getTipoDocumento());
         TipoPersona tipoPersona = tipoPersonaRepository.findByDescripcion(personaRequest.getTipoPersona());
         Persona persona = new Persona();
         persona.setNumDocumento(reniecResponse.getNumeroDocumento());

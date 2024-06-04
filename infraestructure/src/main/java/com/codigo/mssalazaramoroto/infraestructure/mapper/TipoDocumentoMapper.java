@@ -9,7 +9,7 @@ public class TipoDocumentoMapper {
     public static TipoDocumentoDto fromEntity(TipoDocumento entity) {
         TipoDocumentoDto dto = new TipoDocumentoDto();
         dto.setId(entity.getId());
-        dto.setTipoDocumento(entity.getTipoDocumento());
+        dto.setTipoDocumento(entity.getDescripcion());
         dto.setEstado(entity.getEstado());
         dto.setUsuarioCreacion(entity.getUsuarioCreacion());
         dto.setFechaCreacion(entity.getFechaCreacion());

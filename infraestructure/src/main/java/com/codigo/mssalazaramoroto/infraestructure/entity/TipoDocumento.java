@@ -2,7 +2,7 @@ package com.codigo.mssalazaramoroto.infraestructure.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Timestamp;
-@NamedQuery(name="TipoDocumento.findByTipoDocumento", query = "select a from TipoDocumento a where a.tipoDocumento=:tipoDocumento")
+@NamedQuery(name="TipoDocumento.findByDescripcion", query = "select a from TipoDocumento a where a.descripcion=:descripcion")
 @Entity
 @Setter
 @Getter
@@ -16,8 +16,8 @@ public class TipoDocumento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tipo_documento", nullable = false)
-    private String tipoDocumento;
+    @Column(name = "descripcion", nullable = true)
+    private String descripcion;
 
     @Column(name = "estado", nullable = true)
     private String estado;

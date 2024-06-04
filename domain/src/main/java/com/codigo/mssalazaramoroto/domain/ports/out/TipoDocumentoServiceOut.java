@@ -1,22 +1,18 @@
 package com.codigo.mssalazaramoroto.domain.ports.out;
 
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoDocumentoDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoDocumentoRequest;
-
-import java.util.List;
-import java.util.Optional;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface TipoDocumentoServiceOut {
 
-    TipoDocumentoDto crearTipoDocumentoServiceOut(TipoDocumentoRequest tipoDocumentoRequest);
+    ResponseEntity<BaseResponse> crearTipoDocumentoServiceOut(TipoDocumentoRequest tipoDocumentoRequest);
 
-    List<TipoDocumentoDto> buscarTodosOut();
+    ResponseEntity<BaseResponse> buscarTodosOut();
 
-    Optional<TipoDocumentoDto> buscarPorIdOut(Long id);
+    ResponseEntity<BaseResponse> buscarPorIdOut(Long id);
 
-    TipoDocumentoDto actualizarOut(Long id, TipoDocumentoRequest tipoDocumentoRequest);
+    ResponseEntity<BaseResponse> actualizarOut(Long id, TipoDocumentoRequest tipoDocumentoRequest);
 
-    TipoDocumentoDto eliminarOut(Long id);
-
-
+    ResponseEntity<BaseResponse> eliminarOut(Long id);
 }

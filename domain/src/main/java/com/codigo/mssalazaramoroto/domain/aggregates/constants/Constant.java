@@ -85,4 +85,40 @@ public class Constant {
 
     public static final Integer CODE_DELETE_BIEN_INMUEBLE_OK = 100000;
     public static final String MSG_DELETE_BIEN_INMUEBLE_OK = "Se eliminó un BienInmueble";
+
+    // Mensajes TipoDocumento
+    // Post
+    public static final Integer CODE_POST_TIPO_DOCUMENTO_OK = 11000;
+    public static final String MSG_POST_TIPO_DOCUMENTO_OK = "Tipo de Documento registrado satisfactoriamente";
+
+    public static final Integer CODE_POST_TIPO_DOCUMENTO_KO = 11001;
+    public static final String MSG_POST_TIPO_DOCUMENTO_KO = "Un tipo de Documento con esta descripción ya fue registrado anteriormente";
+
+    // Get Todos
+    public static final Integer CODE_GET_TODOS_TIPO_DOCUMENTO_KO = 12001;
+    public static final String MSG_GET_TODOS_TIPO_DOCUMENTO_KO = "Sin Tipos de Documentos registrados";
+
+    public static final Integer CODE_GET_TODOS_TIPO_DOCUMENTO_OK = 12000;
+    public static final String MSG_GET_TODOS_TIPO_DOCUMENTO_OK = "Listado de Tipos de Documentos registrados";
+
+    // Get Id
+    public static final Integer CODE_GET_ID_TIPO_DOCUMENTO_KO = 13001;
+    public static final String MSG_GET_ID_TIPO_DOCUMENTO_KO = "No se encontró el Tipo Documento";
+
+    public static final Integer CODE_GET_ID_TIPO_DOCUMENTO_OK = 13000;
+    public static final String MSG_GET_ID_TIPO_DOCUMENTO_OK = "Se encontró un Tipo Documento";
+
+    // Put
+    public static final Integer CODE_PUT_TIPO_DOCUMENTO_KO = 14001;
+    public static final String MSG_PUT_TIPO_DOCUMENTO_KO = "No se encontró el TipoDocumento a actualizar";
+
+    public static final Integer CODE_PUT_TIPO_DOCUMENTO_OK = 14000;
+    public static final String MSG_PUT_TIPO_DOCUMENTO_OK = "Se actualizó un TipoDocumento";
+
+    // Delete
+    public static final Integer CODE_DELETE_TIPO_DOCUMENTO_KO = 15001;
+    public static final String MSG_DELETE_TIPO_DOCUMENTO_KO = "No se encontró el TipoBienInmueble a eliminar";
+
+    public static final Integer CODE_DELETE_TIPO_DOCUMENTO_OK = 15000;
+    public static final String MSG_DELETE_TIPO_DOCUMENTO_OK = "Se eliminó un TipoBienInmueble";
 }

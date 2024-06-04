@@ -19,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
     private final TipoBienInmuebleRepository tipoBienInmuebleRepository;
-    private final TipoBienInmuebleMapper tipoBienInmuebleMapper;
 
     @Override
     public ResponseEntity<BaseResponse> crearTipoBienInmuebleOut(TipoBienInmuebleRequest tipoBienInmuebleRequest) {

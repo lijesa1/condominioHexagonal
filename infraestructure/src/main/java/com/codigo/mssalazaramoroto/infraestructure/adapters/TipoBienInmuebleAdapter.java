@@ -1,19 +1,17 @@
 package com.codigo.mssalazaramoroto.infraestructure.adapters;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoBienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoBienInmuebleRequest;
 import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.out.TipoBienInmuebleServiceOut;
 import com.codigo.mssalazaramoroto.infraestructure.dao.TipoBienInmuebleRepository;
-import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import com.codigo.mssalazaramoroto.infraestructure.entity.TipoBienInmueble;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.TipoBienInmuebleMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,35 +22,95 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
     private final TipoBienInmuebleMapper tipoBienInmuebleMapper;
 
     @Override
-    public BaseResponse crearTipoBienInmuebleOut(TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+    public ResponseEntity<BaseResponse> crearTipoBienInmuebleOut(TipoBienInmuebleRequest tipoBienInmuebleRequest) {
         boolean exist = tipoBienInmuebleRepository.existsByDescripcion(tipoBienInmuebleRequest.getDescripcion());
-        if (exist) {
-            return new BaseResponse<TipoBienInmueble>(Constant.CODE_EXIST, Constant.MSG_EXIST, new TipoBienInmueble());
-        } else {
+        BaseResponse baseResponse = new BaseResponse();
+        if (!exist) {
             TipoBienInmueble tipoBienInmuebleEntity = getEntity(tipoBienInmuebleRequest, false, null);
-            return tipoBienInmuebleMapper.mapToDto(tipoBienInmuebleRepository.save(tipoBienInmuebleEntity));
+            baseResponse.setCode(Constant.CODE_POST_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setMessage(Constant.MSG_POST_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setEntidad(tipoBienInmuebleRepository.save(tipoBienInmuebleEntity));
+        } else {
+            baseResponse.setCode(Constant.CODE_POST_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setMessage(Constant.MSG_POST_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setEntidad(Optional.empty());
         }
+        return ResponseEntity.ok(baseResponse);
     }
 
     @Override
-    public List<TipoBienInmuebleDto> buscarTodosOut() {
-        return List.of();
+    public ResponseEntity<BaseResponse> buscarTodosOut() {
+        BaseResponse baseResponse = new BaseResponse();
+        List<TipoBienInmueble> tipoBienInmuebleList = tipoBienInmuebleRepository.findAll();
+        if (!tipoBienInmuebleList.isEmpty()) {
+            baseResponse.setCode(Constant.CODE_GET_TODOS_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setMessage(Constant.MSG_GET_TODOS_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setEntidad(tipoBienInmuebleList);
+        } else {
+            baseResponse.setCode(Constant.CODE_GET_TODOS_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setMessage(Constant.MSG_GET_TODOS_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
     }
 
     @Override
-    public Optional<TipoBienInmuebleDto> buscarPorIdOut(Long id) {
-        return Optional.empty();
+    public ResponseEntity<BaseResponse> buscarPorIdOut(Long id) {
+        BaseResponse baseResponse = new BaseResponse();
+        Optional<TipoBienInmueble> tipoBienInmuebleBuscar = tipoBienInmuebleRepository.findById(id);
+        if (tipoBienInmuebleBuscar.isPresent()) {
+            baseResponse.setCode(Constant.CODE_GET_ID_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setMessage(Constant.MSG_GET_ID_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setEntidad(tipoBienInmuebleBuscar);
+        } else {
+            baseResponse.setCode(Constant.CODE_GET_ID_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setMessage(Constant.MSG_GET_ID_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
     }
 
     @Override
-    public TipoBienInmuebleDto actualizarOut(Long id, TipoBienInmuebleRequest tipoBienInmuebleRequest) {
-        return null;
+    public ResponseEntity<BaseResponse> actualizarOut(Long id, TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+        BaseResponse baseResponse = new BaseResponse();
+        Optional<TipoBienInmueble> tipoBienInmuebleRecuperado = tipoBienInmuebleRepository.findById(id);
+        if (tipoBienInmuebleRecuperado.isPresent()) {
+            TipoBienInmueble tipoBienInmuebleEntity = getEntity(tipoBienInmuebleRequest, true, id);
+            baseResponse.setCode(Constant.CODE_PUT_ID_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setMessage(Constant.MSG_PUT_ID_TIPO_BIEN_INMUEBLE_OK);
+            tipoBienInmuebleRecuperado.get().setUsuarioCreacion(tipoBienInmuebleEntity.getUsuarioCreacion());
+            tipoBienInmuebleRecuperado.get().setFechaCreacion(tipoBienInmuebleEntity.getFechaCreacion());
+            tipoBienInmuebleRecuperado.get().setUsuarioActualizacion(Constant.USU_ADMIN);
+            tipoBienInmuebleRecuperado.get().setFechaActualizacion(getTimestamp());
+            baseResponse.setEntidad(tipoBienInmuebleRepository.save(tipoBienInmuebleEntity));
+        } else {
+            baseResponse.setCode(Constant.CODE_PUT_ID_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setMessage(Constant.MSG_PUT_ID_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
     }
 
     @Override
-    public TipoBienInmuebleDto eliminarOut(Long id) {
-        return null;
+    public ResponseEntity<BaseResponse> eliminarOut(Long id) {
+        BaseResponse baseResponse = new BaseResponse();
+        Optional<TipoBienInmueble> tipoBienInmuebleRecuperado = tipoBienInmuebleRepository.findById(id);
+        if (tipoBienInmuebleRecuperado.isPresent()) {
+            baseResponse.setCode(Constant.CODE_DELETE_ID_TIPO_BIEN_INMUEBLE_OK);
+            baseResponse.setMessage(Constant.MSG_DELETE_ID_TIPO_BIEN_INMUEBLE_OK);
+            tipoBienInmuebleRecuperado.get().setEstado(Constant.STATUS_INACTIVE);
+
+            tipoBienInmuebleRecuperado.get().setUsuarioEliminacion(Constant.USU_ADMIN);
+            tipoBienInmuebleRecuperado.get().setFechaEliminacion(getTimestamp());
+            baseResponse.setEntidad(tipoBienInmuebleRecuperado);
+        } else {
+            baseResponse.setCode(Constant.CODE_DELETE_ID_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setMessage(Constant.MSG_DELETE_ID_TIPO_BIEN_INMUEBLE_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }
+        return ResponseEntity.ok(baseResponse);
     }
+
 
     /*@Override
     public List<TipoBienInmuebleDto> buscarTodosOut() {

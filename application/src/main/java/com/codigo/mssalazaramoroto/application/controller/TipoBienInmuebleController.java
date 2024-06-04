@@ -19,37 +19,26 @@ public class TipoBienInmuebleController {
 
     @PostMapping
     public ResponseEntity<BaseResponse> registrar(@RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(tipoBienInmuebleServiceIn.crearTipoBienInmuebleServiceIn(tipoBienInmuebleRequest));
+        return tipoBienInmuebleServiceIn.crearTipoBienInmuebleServiceIn(tipoBienInmuebleRequest);
     }
 
     @GetMapping
-    public ResponseEntity<List<TipoBienInmuebleDto>> buscarTipoBienInmueble() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoBienInmuebleServiceIn.obtenerTodosIn());
+    public ResponseEntity<BaseResponse> buscarTipoBienInmueble() {
+        return tipoBienInmuebleServiceIn.obtenerTodosIn();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoBienInmuebleDto> buscarTipoBienInmuebleById(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoBienInmuebleServiceIn.buscarPorIdIn(id).get());
+    public ResponseEntity<BaseResponse> buscarTipoBienInmuebleById(@PathVariable Long id) {
+        return tipoBienInmuebleServiceIn.buscarPorIdIn(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TipoBienInmuebleDto> actualizar(@PathVariable Long id, @RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoBienInmuebleServiceIn.actualizarIn(id, tipoBienInmuebleRequest));
-
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+        return tipoBienInmuebleServiceIn.actualizarIn(id, tipoBienInmuebleRequest);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<TipoBienInmuebleDto> eliminar(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(tipoBienInmuebleServiceIn.eliminarIn(id));
+    public ResponseEntity<BaseResponse> eliminar(@PathVariable Long id) {
+        return tipoBienInmuebleServiceIn.eliminarIn(id);
     }
 }

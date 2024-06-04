@@ -42,7 +42,7 @@ public class PersonaAdapter implements PersonaServiceOut {
     public BaseResponse crearPersonaOut(PersonaRequest personaRequest) {
         boolean exist = personaRepository.existsByNumDocumento(personaRequest.getNumDocumento());
         if (exist) {
-            return new BaseResponse<Persona>(Constant.CODE_EXIST, Constant.MSG_EXIST, new Persona());
+            return new BaseResponse<Persona>(Constant.CODE_POST_TIPO_BIEN_INMUEBLE_OK, Constant.MSG_POST_TIPO_BIEN_INMUEBLE_OK, new Persona());
         } else {
             Persona persona = getEntity(personaRequest, false, null);
             return personaMapper.mapToDto(personaRepository.save(persona));

@@ -78,10 +78,11 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
             TipoBienInmueble tipoBienInmuebleEntity = getEntity(tipoBienInmuebleRequest, true, id);
             baseResponse.setCode(Constant.CODE_PUT_ID_TIPO_BIEN_INMUEBLE_OK);
             baseResponse.setMessage(Constant.MSG_PUT_ID_TIPO_BIEN_INMUEBLE_OK);
-            tipoBienInmuebleRecuperado.get().setUsuarioCreacion(tipoBienInmuebleEntity.getUsuarioCreacion());
-            tipoBienInmuebleRecuperado.get().setFechaCreacion(tipoBienInmuebleEntity.getFechaCreacion());
-            tipoBienInmuebleRecuperado.get().setUsuarioActualizacion(Constant.USU_ADMIN);
-            tipoBienInmuebleRecuperado.get().setFechaActualizacion(getTimestamp());
+            tipoBienInmuebleEntity.setEstado(tipoBienInmuebleRecuperado.get().getEstado());
+            tipoBienInmuebleEntity.setUsuarioCreacion(tipoBienInmuebleRecuperado.get().getUsuarioCreacion());
+            tipoBienInmuebleEntity.setFechaCreacion(tipoBienInmuebleRecuperado.get().getFechaCreacion());
+            tipoBienInmuebleEntity.setUsuarioActualizacion(Constant.USU_ADMIN);
+            tipoBienInmuebleEntity.setFechaActualizacion(getTimestamp());
             baseResponse.setEntidad(tipoBienInmuebleRepository.save(tipoBienInmuebleEntity));
         } else {
             baseResponse.setCode(Constant.CODE_PUT_ID_TIPO_BIEN_INMUEBLE_KO);
@@ -99,7 +100,6 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
             baseResponse.setCode(Constant.CODE_DELETE_ID_TIPO_BIEN_INMUEBLE_OK);
             baseResponse.setMessage(Constant.MSG_DELETE_ID_TIPO_BIEN_INMUEBLE_OK);
             tipoBienInmuebleRecuperado.get().setEstado(Constant.STATUS_INACTIVE);
-
             tipoBienInmuebleRecuperado.get().setUsuarioEliminacion(Constant.USU_ADMIN);
             tipoBienInmuebleRecuperado.get().setFechaEliminacion(getTimestamp());
             baseResponse.setEntidad(tipoBienInmuebleRecuperado);
@@ -110,47 +110,6 @@ public class TipoBienInmuebleAdapter implements TipoBienInmuebleServiceOut {
         }
         return ResponseEntity.ok(baseResponse);
     }
-
-
-    /*@Override
-    public List<TipoBienInmuebleDto> buscarTodosOut() {
-        List<TipoBienInmuebleDto> listaDto = new ArrayList<>();
-        List<TipoBienInmueble> entidades = tipoBienInmuebleRepository.findAll();
-        for (TipoBienInmueble dato : entidades) {
-            listaDto.add(TipoBienInmuebleMapper.fromEntity(dato));
-        }
-        return listaDto;
-    }
-
-    @Override
-    public Optional<TipoBienInmuebleDto> buscarPorIdOut(Long id) {
-        TipoBienInmuebleDto tipoBienInmuebleDto = TipoBienInmuebleMapper.fromEntity(tipoBienInmuebleRepository.findById(id).get());
-        return Optional.of(tipoBienInmuebleDto);
-    }
-
-    @Override
-    public TipoBienInmuebleDto actualizarOut(Long id, TipoBienInmuebleRequest tipoBienInmuebleRequest) {
-        Optional<TipoBienInmueble> tipoBienInmuebleRecuperado = tipoBienInmuebleRepository.findById(id);
-        if (tipoBienInmuebleRecuperado.isPresent()) {
-            TipoBienInmueble tipoBienInmueble = getEntity(tipoBienInmuebleRequest, true, id);
-            return TipoBienInmuebleMapper.fromEntity(tipoBienInmuebleRepository.save(tipoBienInmueble));
-        } else {
-            throw new RuntimeException("No se encontro el Tipo Bien Inmueble");
-        }
-    }
-
-    @Override
-    public TipoBienInmuebleDto eliminarOut(Long id) {
-        Optional<TipoBienInmueble> tipoBienInmuebleRecuperado = tipoBienInmuebleRepository.findById(id);
-        if (tipoBienInmuebleRecuperado.isPresent()) {
-            tipoBienInmuebleRecuperado.get().setEstado(Constant.STATUS_INACTIVE);
-            tipoBienInmuebleRecuperado.get().setUsuarioEliminacion(Constant.USU_ADMIN);
-            tipoBienInmuebleRecuperado.get().setFechaEliminacion(getTimestamp());
-            return TipoBienInmuebleMapper.fromEntity(tipoBienInmuebleRepository.save(tipoBienInmuebleRecuperado.get()));
-        } else {
-            throw new RuntimeException("No se encontró el Tipo Bien Inmueble");
-        }
-    }*/
 
     private TipoBienInmueble getEntity(TipoBienInmuebleRequest tipoBienInmuebleRequest, boolean actualiza, Long id) {
         TipoBienInmueble entity = new TipoBienInmueble();

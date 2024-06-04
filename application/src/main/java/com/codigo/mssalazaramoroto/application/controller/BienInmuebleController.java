@@ -1,6 +1,7 @@
 package com.codigo.mssalazaramoroto.application.controller;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.BienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.BienInmuebleRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.BienInmuebleServiceIn;
 
 import lombok.AllArgsConstructor;
@@ -15,40 +16,29 @@ import java.util.List;
 public class BienInmuebleController {
     private final BienInmuebleServiceIn bienInmuebleServiceIn;
 
-
     @PostMapping
-    public ResponseEntity<BienInmuebleDto> registrar(@RequestBody BienInmuebleRequest bienInmuebleRequest) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(bienInmuebleServiceIn.crearBienInmuebleServiceIn(bienInmuebleRequest));
+    public ResponseEntity<BaseResponse> registrar(@RequestBody BienInmuebleRequest bienInmuebleRequest) {
+        return bienInmuebleServiceIn.crearBienInmuebleServiceIn(bienInmuebleRequest);
     }
 
     @GetMapping
-    public ResponseEntity<List<BienInmuebleDto>> buscarBienInmueble() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(bienInmuebleServiceIn.obtenerTodosIn());
+    public ResponseEntity<BaseResponse> buscarBienInmueble() {
+        return bienInmuebleServiceIn.obtenerTodosIn();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BienInmuebleDto> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(bienInmuebleServiceIn.buscarPorIdIn(id).get());
+    public ResponseEntity<BaseResponse> buscarPorId(@PathVariable Long id) {
+        return bienInmuebleServiceIn.buscarPorIdIn(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BienInmuebleDto> actualizar(@PathVariable Long id, @RequestBody BienInmuebleRequest bienInmuebleRequest) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(bienInmuebleServiceIn.actualizarIn(id, bienInmuebleRequest));
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody BienInmuebleRequest bienInmuebleRequest) {
+        return bienInmuebleServiceIn.actualizarIn(id, bienInmuebleRequest);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<BienInmuebleDto> eliminar(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(bienInmuebleServiceIn.eliminarIn(id));
+    public ResponseEntity<BaseResponse> eliminar(@PathVariable Long id) {
+        return bienInmuebleServiceIn.eliminarIn(id);
 
     }
 }

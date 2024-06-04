@@ -1,15 +1,13 @@
 package com.codigo.mssalazaramoroto.domain.ports.in;
 
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.BienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.BienInmuebleRequest;
-
-import java.util.List;
-import java.util.Optional;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface BienInmuebleServiceIn {
-    BienInmuebleDto crearBienInmuebleServiceIn(BienInmuebleRequest bienInmuebleRequest);
-    List<BienInmuebleDto> obtenerTodosIn();
-    Optional<BienInmuebleDto> buscarPorIdIn(Long id);
-    BienInmuebleDto actualizarIn(Long id, BienInmuebleRequest bienInmuebleRequest);
-    BienInmuebleDto eliminarIn(Long id);
+    ResponseEntity<BaseResponse> crearBienInmuebleServiceIn(BienInmuebleRequest bienInmuebleRequest);
+    ResponseEntity<BaseResponse> obtenerTodosIn();
+    ResponseEntity<BaseResponse> buscarPorIdIn(Long id);
+    ResponseEntity<BaseResponse> actualizarIn(Long id, BienInmuebleRequest bienInmuebleRequest);
+    ResponseEntity<BaseResponse> eliminarIn(Long id);
 }

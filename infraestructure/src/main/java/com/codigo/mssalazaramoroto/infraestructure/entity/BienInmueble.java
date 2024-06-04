@@ -18,31 +18,29 @@ public class BienInmueble {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "torre", nullable = false)
+    @Column(name = "torre", nullable = true)
     private String torre;
 
-    @Column(name = "piso_torre", nullable = false)
+    @Column(name = "piso_torre", nullable = true)
     private String pisoTorre;
 
-    @Column(name = "num_dpto", nullable = false)
+    @Column(name = "num_dpto", nullable = true)
     private String numDpto;
 
-    @Column(name = "num_estacionamiento", nullable = false)
+    @Column(name = "num_estacionamiento", nullable = true)
     private String numEstacionamiento;
 
-    @Column(name = "num_comercio", nullable = false)
+    @Column(name = "num_comercio", nullable = true)
     private String numComercio;
 
-    @Column(name = "en_uso", nullable = false)
+    @Column(name = "en_uso", nullable = true)
     private Boolean enUso;
 
-    @Column(name = "en_alquiler", nullable = false)
+    @Column(name = "en_alquiler", nullable = true)
     private Boolean enAlquiler;
 
-    @Column(name = "placa", nullable = false)
+    @Column(name = "placa", nullable = true)
     private String numPlaca;
-
-
 
     @Column(name = "estado", nullable = true)
     private String estado;

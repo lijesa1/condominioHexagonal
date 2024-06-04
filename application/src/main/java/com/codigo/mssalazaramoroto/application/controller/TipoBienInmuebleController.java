@@ -1,15 +1,11 @@
 package com.codigo.mssalazaramoroto.application.controller;
 
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.TipoBienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.TipoBienInmuebleRequest;
 import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.TipoBienInmuebleServiceIn;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/ms-condominio/v1/tipoBienInmueble")

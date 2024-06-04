@@ -47,7 +47,42 @@ public class Constant {
     public static final Integer CODE_DELETE_ID_TIPO_BIEN_INMUEBLE_OK = 50000;
     public static final String MSG_DELETE_ID_TIPO_BIEN_INMUEBLE_OK = "Se eliminó un TipoBienInmueble";
 
-
     public static final String MSG_TRX_OK = "Transacción exitosa";
     public static final String MSG_OK = "Se registró satisfactoriamente";
+
+    // Mensajes BienInmueble
+    // Post
+    public static final Integer CODE_POST_BIEN_INMUEBLE_OK = 60000;
+    public static final String MSG_POST_BIEN_INMUEBLE_OK = "Bien Inmueble registrado satisfactoriamente";
+
+    public static final Integer CODE_POST_BIEN_INMUEBLE_KO = 60001;
+    public static final String MSG_POST_BIEN_INMUEBLE_KO = "El tipo de bien inmueble a registrar no existe";
+
+    // Get Todos
+    public static final Integer CODE_GET_TODOS_BIEN_INMUEBLE_OK = 70000;
+    public static final String MSG_GET_TODOS_BIEN_INMUEBLE_OK = "Listado de Bienes Inmuebles registrados";
+
+    public static final Integer CODE_GET_TODOS_BIEN_INMUEBLE_KO = 70001;
+    public static final String MSG_GET_TODOS_BIEN_INMUEBLE_KO = "Sin Bienes Inmueble registrados";
+
+    // Get Id
+    public static final Integer CODE_GET_ID_BIEN_INMUEBLE_KO = 80001;
+    public static final String MSG_GET_ID_BIEN_INMUEBLE_KO = "No se encontró el BienInmueble";
+
+    public static final Integer CODE_GET_ID_BIEN_INMUEBLE_OK = 80000;
+    public static final String MSG_GET_ID_BIEN_INMUEBLE_OK = "Se encontró un BienInmueble";
+
+    // Put
+    public static final Integer CODE_PUT_BIEN_INMUEBLE_KO = 90001;
+    public static final String MSG_PUT_BIEN_INMUEBLE_KO = "No se encontró el BienInmueble a actualizar";
+
+    public static final Integer CODE_PUT_BIEN_INMUEBLE_OK = 90000;
+    public static final String MSG_PUT_BIEN_INMUEBLE_OK = "Se actualizó un BienInmueble";
+
+    // Delete
+    public static final Integer CODE_DELETE_BIEN_INMUEBLE_KO = 100001;
+    public static final String MSG_DELETE_BIEN_INMUEBLE_KO = "No se encontró el BienInmueble a eliminar";
+
+    public static final Integer CODE_DELETE_BIEN_INMUEBLE_OK = 100000;
+    public static final String MSG_DELETE_BIEN_INMUEBLE_OK = "Se eliminó un BienInmueble";
 }

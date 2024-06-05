@@ -8,7 +8,6 @@ import lombok.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
-//@NamedQuery(name = "Persona.findByNumDocumento", query ="select p from Persona p where p.numDocumento=:numDocumento")
 @Entity
 @Setter
 @Getter
@@ -76,15 +75,18 @@ public class Persona {
     @Column(name = "fecha_eliminacion", nullable = true)
     private Timestamp fechaEliminacion;
 
-    @JsonIgnore
+/*    @JsonIgnore
     @ManyToOne(optional = true, targetEntity = TipoDocumento.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "tipo_documento_id", nullable = true)
+    private TipoDocumento tipoDocumento;*/
+
+    @ManyToOne(targetEntity = TipoDocumento.class)
+    @JoinColumn(name = "tipo_documento_id")
     private TipoDocumento tipoDocumento;
 
     @ManyToOne(targetEntity = TipoPersona.class)
     @JoinColumn(name = "tipo_persona_id")
     private TipoPersona tipoPersona;
-
 
     /*@OneToMany(mappedBy = "persona", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private Set<PersonaBienInmueble> personaBienInmuebles;
@@ -94,5 +96,4 @@ public class Persona {
 
     @OneToMany(mappedBy = "persona", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private Set<DetalleLibroVisita> detalleLibroVisitas;*/
-
 }

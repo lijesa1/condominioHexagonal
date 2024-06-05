@@ -171,32 +171,20 @@ public class PersonaAdapter implements PersonaServiceOut {
 
     @Override
     public ResponseEntity<BaseResponse> buscarPorIdOut(Long id) {
-        System.out.println("buscarPorIdOut");
         BaseResponse baseResponse = new BaseResponse();
         String redisInfo = redisService.getFromRedis(Constant.REDIS_KEY_OBTENERPERSONA + id);
         if (redisInfo != null) {
-            System.out.println("redisInfo!=null");
             PersonaDto personaDto = util.convertFromJson(redisInfo, PersonaDto.class);
-            System.out.println("redisInfo: " + redisInfo.toString());
-            System.out.println("personaDto: " + personaDto.toString());
             baseResponse.setCode(Constant.CODE_GET_ID_PERSONA_OK);
             baseResponse.setMessage(Constant.MSG_GET_ID_PERSONA_OK);
             baseResponse.setEntidad(personaDto);
         } else {
-            System.out.println("redisInfo==null");
-            PersonaDto dto = personaMapper.mapToDto(personaRepository.findById(id));
-            if(dto == null){
-                System.out.println("No existe la persona en la BD");
-                baseResponse.setCode(1);
-                baseResponse.setMessage("No existe la persona en la BD");
-                baseResponse.setEntidad(Optional.empty());
-            }else{
-                String redis = util.convertToJson(dto);
-                System.out.println("redis: " + redis);
-                redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, redis, 10);
-            }
-
-
+            PersonaDto dto = PersonaMapper.fromEntity(personaRepository.findById(id).get());
+            String dataForRedis = util.convertToJson(dto);
+            redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, dataForRedis, 1);
+            baseResponse.setCode(Constant.CODE_GET_ID_PERSONA_OK);
+            baseResponse.setMessage(Constant.MSG_GET_ID_PERSONA_OK);
+            baseResponse.setEntidad(dto);
         }
         return ResponseEntity.ok(baseResponse);
     }

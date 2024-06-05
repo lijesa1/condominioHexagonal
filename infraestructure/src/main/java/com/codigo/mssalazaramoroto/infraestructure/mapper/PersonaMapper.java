@@ -11,16 +11,15 @@ import java.util.Optional;
 
 @Service
 public class PersonaMapper {
-    private static final ModelMapper modelMapper = new ModelMapper();
+   /* private static final ModelMapper modelMapper = new ModelMapper();
 
     public PersonaDto mapToDto(Optional<Persona> entity){
         return modelMapper.map(entity, PersonaDto.class);
     }
     public Persona mapToEntity(PersonaDto personaDto){
         return modelMapper.map(personaDto, Persona.class);
-    }
+    }*/
 
-    /*
     public static PersonaDto fromEntity(Persona entity) {
         PersonaDto dto = new PersonaDto();
         dto.setId(entity.getId());
@@ -30,19 +29,17 @@ public class PersonaMapper {
         dto.setCelular(entity.getCelular());
         dto.setEmail(entity.getEmail());
         dto.setNumDocumento(entity.getNumDocumento());
-        dto.setTipoDocumento(entity.getTipoDocumento().getTipoDocumento());
+        dto.setTipoDocumento(entity.getTipoDocumento().getDescripcion());
         dto.setTipoPersona(entity.getTipoPersona().getDescripcion());
         dto.setFechaNac(entity.getFechaNac());
         dto.setLogin(entity.getLogin());
         dto.setEstado(entity.getEstado());
         dto.setUsuarioCreacion(entity.getUsuarioCreacion());
         dto.setFechaCreacion(entity.getFechaCreacion());
-        dto.setUsuarioModificacion(entity.getUsuarioModificacion());
-        dto.setFechaModificacion(entity.getFechaModificacion());
         dto.setUsuarioActualizacion(entity.getUsuarioActualizacion());
         dto.setFechaActualizacion(entity.getFechaActualizacion());
         dto.setUsuarioEliminacion(entity.getUsuarioEliminacion());
         dto.setFechaEliminacion(entity.getFechaEliminacion());
         return dto;
-    }*/
+    }
 }

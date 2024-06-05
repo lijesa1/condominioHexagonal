@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
+
 import java.sql.Timestamp;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -18,6 +20,7 @@ class TipoBienInmuebleAdapterTest {
 
     @Mock
     private TipoBienInmuebleRepository tipoBienInmuebleRepository;
+
     @Mock
     private TipoBienInmuebleMapper tipoBienInmuebleMapper;
 
@@ -27,7 +30,7 @@ class TipoBienInmuebleAdapterTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        tipoBienInmuebleAdapter = new TipoBienInmuebleAdapter(tipoBienInmuebleRepository, tipoBienInmuebleMapper);
+        tipoBienInmuebleAdapter = new TipoBienInmuebleAdapter(tipoBienInmuebleRepository);
     }
 
     @Test
@@ -36,13 +39,13 @@ class TipoBienInmuebleAdapterTest {
         TipoBienInmuebleRequest tipoBienInmuebleRequest = new TipoBienInmuebleRequest("Departamento", "Activo");
         TipoBienInmueble tipoBienInmueble = new TipoBienInmueble(1L, "Departamento", "Activo", "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()));
         BaseResponse responseEsperado = new BaseResponse();
-        responseEsperado.setCode(1000);
+        responseEsperado.setCode(10000);
         when(tipoBienInmuebleRepository.existsByDescripcion(anyString())).thenReturn(false);
         when(tipoBienInmuebleMapper.mapToDto(tipoBienInmuebleRepository.save(tipoBienInmueble))).thenReturn(responseEsperado);
         // Act
-        BaseResponse tipoBienInmuebleDtoRecibido = tipoBienInmuebleAdapter.crearTipoBienInmuebleOut(tipoBienInmuebleRequest);
+        ResponseEntity<BaseResponse> tipoBienInmuebleDtoRecibido = tipoBienInmuebleAdapter.crearTipoBienInmuebleOut(tipoBienInmuebleRequest);
         // Assert
-         assertEquals(responseEsperado.getCode(), tipoBienInmuebleDtoRecibido.getCode());
+         assertEquals(responseEsperado.getCode(), tipoBienInmuebleDtoRecibido.getBody().getCode());
     }
     @Test
     void crearTipoBienInmuebleOutExists() {
@@ -50,12 +53,12 @@ class TipoBienInmuebleAdapterTest {
         TipoBienInmuebleRequest tipoBienInmuebleRequest = new TipoBienInmuebleRequest("Departamento", "Activo");
         TipoBienInmueble tipoBienInmueble = new TipoBienInmueble(1L, "Departamento", "Activo", "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()));
         BaseResponse responseEsperado = new BaseResponse();
-        responseEsperado.setCode(1001);
+        responseEsperado.setCode(10001);
         when(tipoBienInmuebleRepository.existsByDescripcion(anyString())).thenReturn(true);
         when(tipoBienInmuebleMapper.mapToDto(tipoBienInmuebleRepository.save(tipoBienInmueble))).thenReturn(responseEsperado);
         // Act
-        BaseResponse tipoBienInmuebleDtoRecibido = tipoBienInmuebleAdapter.crearTipoBienInmuebleOut(tipoBienInmuebleRequest);
+        ResponseEntity<BaseResponse> tipoBienInmuebleDtoRecibido = tipoBienInmuebleAdapter.crearTipoBienInmuebleOut(tipoBienInmuebleRequest);
         // Assert
-        assertEquals(responseEsperado.getCode(), tipoBienInmuebleDtoRecibido.getCode());
+        assertEquals(responseEsperado.getCode(), tipoBienInmuebleDtoRecibido.getBody().getCode());
     }
 }

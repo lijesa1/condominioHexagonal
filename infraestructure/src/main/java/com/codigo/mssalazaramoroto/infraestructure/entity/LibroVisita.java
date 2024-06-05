@@ -1,5 +1,5 @@
 package com.codigo.mssalazaramoroto.infraestructure.entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +19,10 @@ public class LibroVisita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha_visita", nullable = false)
+    @Column(name = "fecha_visita", nullable = true)
     private Date fechaVisita;
 
-    @Column(name = "observaciones_libro_visita", nullable = false)
+    @Column(name = "observaciones_libro_visita", nullable = true)
     private String observacionesLibroVisita;
 
     @Column(name = "estado", nullable = true)
@@ -33,12 +33,6 @@ public class LibroVisita {
 
     @Column(name = "fecha_creacion", nullable = true)
     private Timestamp fechaCreacion;
-
-    @Column(name = "usuario_modificacion", nullable = true)
-    private String usuarioModificacion;
-
-    @Column(name = "fecha_modificacion", nullable = true)
-    private Timestamp fechaModificacion;
 
     @Column(name = "usuario_actualizacion", nullable = true)
     private String usuarioActualizacion;
@@ -52,16 +46,8 @@ public class LibroVisita {
     @Column(name = "fecha_eliminacion", nullable = true)
     private Timestamp fechaEliminacion;
 
-
-
-
-
-
-
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "personaRegistradorId", nullable = false)
+    @ManyToOne(targetEntity = Persona.class)
+    @JoinColumn(name = "personaRegistradorId")
     private Persona persona;
 }
 

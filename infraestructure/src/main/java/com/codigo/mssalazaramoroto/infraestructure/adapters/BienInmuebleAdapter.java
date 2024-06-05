@@ -33,7 +33,7 @@ public class BienInmuebleAdapter implements BienInmuebleServiceOut {
             baseResponse.setCode(Constant.CODE_POST_BIEN_INMUEBLE_KO);
             baseResponse.setMessage(Constant.MSG_POST_BIEN_INMUEBLE_KO);
             baseResponse.setEntidad(Optional.empty());
-            return ResponseEntity.ok(baseResponse);
+            //return ResponseEntity.ok(baseResponse);
         } else {
             BienInmueble bienInmueble = getEntity(bienInmuebleRequest, false, null);
             bienInmueble.setTipoBienInmueble(tipoBienInmuebleRepository.findByDescripcion(bienInmuebleRequest.getTipoBienInmueble()).get());

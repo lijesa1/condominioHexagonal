@@ -69,12 +69,6 @@ public class BienInmueble {
     @Column(name = "fecha_eliminacion", nullable = true)
     private Timestamp fechaEliminacion;
 
-
-
-
-
-
-
     @ManyToOne(targetEntity = TipoBienInmueble.class)
     @JoinColumn(name = "tipo_bien_inmueble_id")
     private TipoBienInmueble tipoBienInmueble;

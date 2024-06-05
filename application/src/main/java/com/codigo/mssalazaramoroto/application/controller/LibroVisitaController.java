@@ -1,8 +1,7 @@
 package com.codigo.mssalazaramoroto.application.controller;
 
-
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.LibroVisitaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.LibroVisitaRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.LibroVisitaServiceIn;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -11,29 +10,23 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/ms-condominio/v1/libroVisita")
 @AllArgsConstructor
 
-
 @Tag(
         name = "Api de Libro Visita",
-        description = "Esta api permite registrar, buscar, actualizar y desactivar un Libro Visita"
+        description = "Esta api permite registrar, buscar, actualizar y desactivar un registro de visita"
 )
-
 public class LibroVisitaController {
     private final LibroVisitaServiceIn libroVisitaServiceIn;
 
     @PostMapping
-
     @Operation(
-            summary = "Registrar un Libro Visita en base de datos",
+            summary = "Registrar una visita en base de datos",
             description = "Para usar endPoint debes enviar un objeto Libro Visita, lo cual se va guardar en Base de datos previa validacion",
             parameters = {
                     @Parameter(name = "filtro", description = "Filtro de Libro Visita ")
@@ -56,10 +49,8 @@ public class LibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<LibroVisitaDto> registrar(@RequestBody LibroVisitaRequest LibroVisitaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(libroVisitaServiceIn.crearLibroVisitaServiceIn(LibroVisitaRequest));
+    public ResponseEntity<BaseResponse> registrar(@RequestBody LibroVisitaRequest LibroVisitaRequest) {
+        return libroVisitaServiceIn.crearLibroVisitaServiceIn(LibroVisitaRequest);
     }
 
     @GetMapping
@@ -88,10 +79,8 @@ public class LibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<List<LibroVisitaDto>> buscarLibroVisita() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(libroVisitaServiceIn.obtenerTodosIn());
+    public ResponseEntity<BaseResponse> buscarLibroVisita() {
+        return libroVisitaServiceIn.obtenerTodosIn();
     }
 
     @GetMapping("/{id}")
@@ -120,10 +109,8 @@ public class LibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<LibroVisitaDto> buscarLibroVisitaId(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(libroVisitaServiceIn.buscarPorIdIn(id).get());
+    public ResponseEntity<BaseResponse> buscarLibroVisitaId(@PathVariable Long id) {
+        return libroVisitaServiceIn.buscarPorIdIn(id);
     }
 
     @PutMapping("/{id}")
@@ -153,10 +140,8 @@ public class LibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<LibroVisitaDto> actualizar(@PathVariable Long id, @RequestBody LibroVisitaRequest libroVisitaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(libroVisitaServiceIn.actualizarIn(id, libroVisitaRequest));
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody LibroVisitaRequest libroVisitaRequest) {
+        return libroVisitaServiceIn.actualizarIn(id, libroVisitaRequest);
     }
 
     @DeleteMapping("/{id}")
@@ -185,9 +170,7 @@ public class LibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<LibroVisitaDto> eliminar(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(libroVisitaServiceIn.eliminarIn(id));
+    public ResponseEntity<BaseResponse> eliminar(@PathVariable Long id) {
+        return libroVisitaServiceIn.eliminarIn(id);
     }
 }

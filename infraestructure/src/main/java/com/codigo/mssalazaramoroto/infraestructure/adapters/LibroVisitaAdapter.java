@@ -5,14 +5,18 @@ import com.codigo.mssalazaramoroto.domain.aggregates.dto.LibroVisitaDto;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.request.LibroVisitaRequest;
 
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.out.LibroVisitaServiceOut;
 import com.codigo.mssalazaramoroto.infraestructure.dao.LibroVisitaRepository;
 
+import com.codigo.mssalazaramoroto.infraestructure.dao.PersonaRepository;
 import com.codigo.mssalazaramoroto.infraestructure.entity.LibroVisita;
 
+import com.codigo.mssalazaramoroto.infraestructure.entity.Persona;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.LibroVisitaMapper;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -25,15 +29,49 @@ import java.util.Optional;
 public class LibroVisitaAdapter implements LibroVisitaServiceOut {
 
     private final LibroVisitaRepository libroVisitaRepository;
-
+    private final PersonaRepository personaRepository;
 
     @Override
-    public LibroVisitaDto crearLibroVisitaServiceOut(LibroVisitaRequest libroVisitaRequest) {
-        LibroVisita libroVisitaDtoEntity = getEntity(libroVisitaRequest, false, null);
-        return LibroVisitaMapper.fromEntity(libroVisitaRepository.save(libroVisitaDtoEntity));
+    public ResponseEntity<BaseResponse> crearLibroVisitaServiceOut(LibroVisitaRequest libroVisitaRequest) {
+        Optional<Persona> persona = personaRepository.findById(libroVisitaRequest.getPersonaRegistradorId());
+        BaseResponse baseResponse = new BaseResponse();
+        if(persona == null) {
+            System.out.println("No se identificó a la persona registradora");
+            baseResponse.setCode(Constant.CODE_POST_LIBRO_VISITA_KO);
+            baseResponse.setMessage(Constant.MSG_POST_LIBRO_VISITA_KO);
+            baseResponse.setEntidad(Optional.empty());
+        }else{
+            System.out.println("Se identificó a la persona registradora");
+            System.out.println("Persona: " + persona.get().getNombre() + " " + persona.get().getApellidoPaterno());
+            LibroVisita libroVisita = getEntity(libroVisitaRequest, false, null);
+            baseResponse.setCode(Constant.CODE_POST_LIBRO_VISITA_OK);
+            baseResponse.setMessage(Constant.MSG_POST_LIBRO_VISITA_OK);
+            baseResponse.setEntidad(libroVisitaRepository.save(libroVisita));
+        }
+        return ResponseEntity.ok(baseResponse);
     }
 
     @Override
+    public ResponseEntity<BaseResponse> buscarTodosOut() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> buscarPorIdOut(Long id) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> actualizarOut(Long id, LibroVisitaRequest libroVisitaRequest) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> eliminarOut(Long id) {
+        return null;
+    }
+
+    /*@Override
     public List<LibroVisitaDto> buscarTodosOut() {
         List<LibroVisitaDto> listaDto = new ArrayList<>();
         List<LibroVisita> entidades = libroVisitaRepository.findAll();
@@ -72,17 +110,19 @@ public class LibroVisitaAdapter implements LibroVisitaServiceOut {
             throw new RuntimeException("No se encontró el libro visita");
         }
     }
-
+*/
     private LibroVisita getEntity(LibroVisitaRequest libroVisitaRequest, boolean actualiza, Long id) {
         LibroVisita entity = new LibroVisita();
-       // entity.setDescripcion(libroVisitaRequest.getDescripcion());
-        //entity.setEstado(libroVisitaRequest.getEstado());
+        entity.setFechaVisita(libroVisitaRequest.getFechaVisita());
+        entity.setObservacionesLibroVisita(libroVisitaRequest.getObservacionesLibroVisita());
+        entity.setEstado(libroVisitaRequest.getEstado());
+        entity.setPersona(personaRepository.findById(libroVisitaRequest.getPersonaRegistradorId()).get());
         if (actualiza) {
             entity.setId(id);
             entity.setUsuarioCreacion(Constant.USU_ADMIN);
             entity.setFechaCreacion(getTimestamp());
-            entity.setUsuarioModificacion(Constant.USU_ADMIN);
-            entity.setFechaModificacion(getTimestamp());
+            entity.setUsuarioActualizacion(Constant.USU_ADMIN);
+            entity.setFechaActualizacion(getTimestamp());
         } else {
             entity.setUsuarioCreacion(Constant.USU_ADMIN);
             entity.setFechaCreacion(getTimestamp());
@@ -94,5 +134,4 @@ public class LibroVisitaAdapter implements LibroVisitaServiceOut {
         long currenTime = System.currentTimeMillis();
         return new Timestamp(currenTime);
     }
-
 }

@@ -181,7 +181,7 @@ public class PersonaAdapter implements PersonaServiceOut {
         } else {
             PersonaDto dto = PersonaMapper.fromEntity(personaRepository.findById(id).get());
             String dataForRedis = util.convertToJson(dto);
-            redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, dataForRedis, 1);
+            redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, dataForRedis, 10);
             baseResponse.setCode(Constant.CODE_GET_ID_PERSONA_OK);
             baseResponse.setMessage(Constant.MSG_GET_ID_PERSONA_OK);
             baseResponse.setEntidad(dto);

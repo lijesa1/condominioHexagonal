@@ -18,3 +18,7 @@ SELECT * FROM tipo_persona;
 SELECT id, nombres, apellido_paterno, apellido_materno, num_documento, celular, email,fecha_nac, estado,login, password, tipo_documento_id, 
 tipo_persona_id, usuario_creacion, fecha_creacion,usuario_actualizacion, fecha_actualizacion, usuario_eliminacion, fecha_eliminacion
 FROM persona;
+
+-- Libro de Visita
+SELECT id,fecha_visita,persona_registrador_id, observaciones_libro_visita, estado,usuario_creacion,
+fecha_creacion, usuario_actualizacion, fecha_actualizacion, usuario_eliminacion, fecha_eliminacion FROM libro_visita;

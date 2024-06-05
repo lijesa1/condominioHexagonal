@@ -16,8 +16,4 @@ public class BienInmuebleRequest {
     private String estado;
     private String tipoBienInmueble;
     private String numPlaca;
-
-
-
-
 }

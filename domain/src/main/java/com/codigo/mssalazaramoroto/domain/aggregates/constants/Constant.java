@@ -196,4 +196,12 @@ public class Constant {
 
     public static final Integer CODE_DELETE_PERSONA_OK = 25000;
     public static final String MSG_DELETE_PERSONA_OK = "Se eliminó una Persona";
+
+    // Mensajes LibroVisitas
+    // Post
+    public static final Integer CODE_POST_LIBRO_VISITA_OK = 26000;
+    public static final String MSG_POST_LIBRO_VISITA_OK = "Visita registrada satisfactoriamente";
+
+    public static final Integer CODE_POST_LIBRO_VISITA_KO = 26001;
+    public static final String MSG_POST_LIBRO_VISITA_KO = "No se pudo registrar la visita";
 }

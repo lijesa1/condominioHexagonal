@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DetalleLibroVisitaMapper {
 
-    public static DetalleLibroVisitaDto fromEntity(DetalleLibroVisita entity){
+    /*public static DetalleLibroVisitaDto fromEntity(DetalleLibroVisita entity){
         DetalleLibroVisitaDto dto=new DetalleLibroVisitaDto();
         dto.setId(entity.getId());
         dto.setObservacionesPersonaVisitante(entity.getObservacionesPersonaVisitante());
@@ -20,5 +20,5 @@ public class DetalleLibroVisitaMapper {
         dto.setUsuarioEliminacion(entity.getUsuarioEliminacion());
         dto.setFechaEliminacion(entity.getFechaEliminacion());
         return dto;
-       }
+       }*/
 }

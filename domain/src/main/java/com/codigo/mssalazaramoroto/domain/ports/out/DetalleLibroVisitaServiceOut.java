@@ -1,19 +1,17 @@
 package com.codigo.mssalazaramoroto.domain.ports.out;
 
-import com.codigo.mssalazaramoroto.domain.aggregates.dto.DetalleLibroVisitaDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.DetalleLibroVisitaRequest;
-
-import java.util.List;
-import java.util.Optional;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
+import org.springframework.http.ResponseEntity;
 
 public interface DetalleLibroVisitaServiceOut {
-    DetalleLibroVisitaDto crearDetalleLibroVisitaOut(DetalleLibroVisitaRequest detalleLibroVisitaRequest);
+    ResponseEntity<BaseResponse> crearDetalleLibroVisitaOut(DetalleLibroVisitaRequest detalleLibroVisitaRequest);
 
-    List<DetalleLibroVisitaDto> buscarTodosOut();
+    ResponseEntity<BaseResponse> buscarTodosOut();
 
-    Optional<DetalleLibroVisitaDto> buscarPorIdOut(Long id);
+    ResponseEntity<BaseResponse> buscarPorIdOut(Long id);
 
-    DetalleLibroVisitaDto actualizarOut(Long id, DetalleLibroVisitaRequest detalleLibroVisitaRequest);
+    ResponseEntity<BaseResponse> actualizarOut(Long id, DetalleLibroVisitaRequest detalleLibroVisitaRequest);
 
-    DetalleLibroVisitaDto eliminarOut(Long id);
+    ResponseEntity<BaseResponse> eliminarOut(Long id);
 }

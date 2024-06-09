@@ -8,9 +8,9 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class DetalleLibroVisitaRequest {
-
     private Long id;
     private String observacionesPersonaVisitante;
-    private Boolean estadoVisitante;
-    private String estado;
+    private Long libroVisitaId;
+    private Long personaVisitante;
+    private String estadoVisitante;
 }

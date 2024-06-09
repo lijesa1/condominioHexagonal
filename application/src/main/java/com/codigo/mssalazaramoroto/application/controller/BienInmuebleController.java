@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +46,7 @@ public class BienInmuebleController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<BaseResponse> registrar(@RequestBody BienInmuebleRequest bienInmuebleRequest) {
+    public ResponseEntity<BaseResponse> registrar(@Valid @RequestBody BienInmuebleRequest bienInmuebleRequest) {
         return bienInmuebleServiceIn.crearBienInmuebleServiceIn(bienInmuebleRequest);
     }
     @GetMapping

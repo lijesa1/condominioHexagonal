@@ -204,4 +204,16 @@ public class Constant {
 
     public static final Integer CODE_POST_LIBRO_VISITA_KO = 26001;
     public static final String MSG_POST_LIBRO_VISITA_KO = "No se pudo registrar la visita";
+
+    // Mensajes DetalleLibroVisitas
+    // Post
+    public static final Integer CODE_POST_DETALLE_LIBRO_VISITA_LIBRO_VISITA_KO = 27001;
+    public static final String MSG_POST_DETALLE_LIBRO_VISITA_LIBRO_VISITA_KO = "No se identificó el libro de visita";
+
+    public static final Integer CODE_POST_DETALLE_LIBRO_VISITA_PERSONA_KO = 27002;
+    public static final String MSG_POST_DETALLE_LIBRO_VISITA_PERSONA_KO = "No se identificó a la persona visitante";
+
+    public static final Integer CODE_POST_DETALLE_LIBRO_VISITA_OK = 27000;
+    public static final String MSG_POST_DETALLE_LIBRO_VISITA_OK = "Invitado agregado al Libro Visita satisfactoriamente";
+
 }

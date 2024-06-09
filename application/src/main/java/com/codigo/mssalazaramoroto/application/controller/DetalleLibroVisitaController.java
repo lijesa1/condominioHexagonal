@@ -4,6 +4,7 @@ import com.codigo.mssalazaramoroto.domain.aggregates.dto.DetalleLibroVisitaDto;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.request.DetalleLibroVisitaRequest;
 
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.DetalleLibroVisitaServiceIn;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -57,10 +58,8 @@ public class DetalleLibroVisitaController {
             )
     })
 
-    public ResponseEntity<DetalleLibroVisitaDto> registrar(@RequestBody DetalleLibroVisitaRequest detalleLibroVisitaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(detalleLibroVisitaServiceIn.crearDetalleLibroVisitaServiceIn(detalleLibroVisitaRequest));
+    public ResponseEntity<BaseResponse> registrar(@RequestBody DetalleLibroVisitaRequest detalleLibroVisitaRequest) {
+        return detalleLibroVisitaServiceIn.crearDetalleLibroVisitaServiceIn(detalleLibroVisitaRequest);
     }
 
     @GetMapping
@@ -90,10 +89,8 @@ public class DetalleLibroVisitaController {
             )
     })
 
-    public ResponseEntity<List<DetalleLibroVisitaDto>> buscarDetalleLibroVisita() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(detalleLibroVisitaServiceIn.obtenerTodosIn());
+    public ResponseEntity<BaseResponse> buscarDetalleLibroVisita() {
+        return detalleLibroVisitaServiceIn.obtenerTodosIn();
     }
 
     @GetMapping("/{id}")
@@ -121,10 +118,8 @@ public class DetalleLibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<DetalleLibroVisitaDto> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(detalleLibroVisitaServiceIn.buscarPorIdIn(id).get());
+    public ResponseEntity<BaseResponse> buscarPorId(@PathVariable Long id) {
+        return detalleLibroVisitaServiceIn.buscarPorIdIn(id);
     }
 
     @PutMapping("/{id}")
@@ -152,10 +147,8 @@ public class DetalleLibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<DetalleLibroVisitaDto> actualizar(@PathVariable Long id, @RequestBody DetalleLibroVisitaRequest detalleLibroVisitaRequest) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(detalleLibroVisitaServiceIn.actualizarIn(id, detalleLibroVisitaRequest));
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody DetalleLibroVisitaRequest detalleLibroVisitaRequest) {
+        return detalleLibroVisitaServiceIn.actualizarIn(id, detalleLibroVisitaRequest);
     }
 
     @DeleteMapping("/{id}")
@@ -183,9 +176,7 @@ public class DetalleLibroVisitaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<DetalleLibroVisitaDto> eliminar(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(detalleLibroVisitaServiceIn.eliminarIn(id));
+    public ResponseEntity<BaseResponse> eliminar(@PathVariable Long id) {
+        return detalleLibroVisitaServiceIn.eliminarIn(id);
     }
 }

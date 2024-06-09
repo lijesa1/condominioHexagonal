@@ -18,26 +18,17 @@ public class DetalleLibroVisita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "observaciones_persona_visitante", nullable = false)
+    @Column(name = "observaciones_persona_visitante", nullable = true)
     private String observacionesPersonaVisitante;
 
-    @Column(name = "estado_visitante", nullable = false)
-    private Boolean estadoVisitante;
-
-    @Column(name = "estado", nullable = true)
-    private String estado;
+    @Column(name = "estado_visitante", nullable = true)
+    private String estadoVisitante;
 
     @Column(name = "usuario_creacion", nullable = true)
     private String usuarioCreacion;
 
     @Column(name = "fecha_creacion", nullable = true)
     private Timestamp fechaCreacion;
-
-    @Column(name = "usuario_modificacion", nullable = true)
-    private String usuarioModificacion;
-
-    @Column(name = "fecha_modificacion", nullable = true)
-    private Timestamp fechaModificacion;
 
     @Column(name = "usuario_actualizacion", nullable = true)
     private String usuarioActualizacion;
@@ -51,17 +42,12 @@ public class DetalleLibroVisita {
     @Column(name = "fecha_eliminacion", nullable = true)
     private Timestamp fechaEliminacion;
 
-
-
-
-
-    @JsonIgnore
-    @ManyToOne(targetEntity = LibroVisita.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = LibroVisita.class)
     @JoinColumn(name = "libro_visita_id", nullable = false)
     private LibroVisita libroVisita;
 
-    @ManyToOne(targetEntity = Persona.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "persona_id", nullable = false)
+    @ManyToOne(targetEntity = Persona.class)
+    @JoinColumn(name = "persona_visitante_id", nullable = false)
     private Persona persona;
 
 }

@@ -39,66 +39,6 @@ public class PersonaAdapter implements PersonaServiceOut {
     @Value("${token.reniec}")
     private String tokenApi;
 
-    /*@Override
-    public BaseResponse crearPersonaOut(PersonaRequest personaRequest) {
-        boolean exist = personaRepository.existsByNumDocumento(personaRequest.getNumDocumento());
-        if (exist) {
-            return new BaseResponse<Persona>(Constant.CODE_POST_TIPO_BIEN_INMUEBLE_OK, Constant.MSG_POST_TIPO_BIEN_INMUEBLE_OK, new Persona());
-        } else {
-            Persona persona = getEntity(personaRequest, false, null);
-            return personaMapper.mapToDto(personaRepository.save(persona));
-        }
-    }*/
-
-    /*@Override
-    public List<PersonaDto> buscarTodosOut() {
-        List<PersonaDto> personaDtoList = new ArrayList<>();
-        List<Persona> entities = personaRepository.findAll();
-        for (Persona persona : entities) {
-            PersonaDto personaDto = personaMapper.mapToDto(persona);
-            personaDtoList.add(personaDto);
-        }
-        return personaDtoList;
-    }*/
-
-  /*  @Override
-    public Optional<PersonaDto> buscarPorIdOut(Long id) {
-        String redisInfo = redisService.getFromRedis(Constant.REDIS_KEY_OBTENERPERSONA + id);
-        if (redisInfo != null) {
-            PersonaDto personaDto = util.convertFromJson(redisInfo, PersonaDto.class);
-            return Optional.of(personaDto);
-        } else {
-            PersonaDto dto = personaMapper.mapToDto(personaRepository.findById(id).get());
-            String redis = util.convertToJson(dto);
-            redisService.saveInRedis(Constant.REDIS_KEY_OBTENERPERSONA + id, redis, 10);
-            return Optional.of(dto);
-        }
-    }*/
-
-  /*  @Override
-    public PersonaDto actualizarOut(Long id, PersonaRequest personaRequest) {
-        Optional<Persona> personaRecuperada = personaRepository.findById(id);
-        if (personaRecuperada.isPresent()) {
-            Persona persona = getEntity(personaRequest, true, id);
-            return personaMapper.mapToDto(personaRepository.save(persona));
-        } else {
-            throw new RuntimeException("No se encontro la persona");
-        }
-    }*/
-
-/*    @Override
-    public PersonaDto eliminarOut(Long id) {
-        Optional<Persona> personaRecuperada = personaRepository.findById(id);
-        if (personaRecuperada.isPresent()) {
-            personaRecuperada.get().setEstado(Constant.STATUS_INACTIVE);
-            personaRecuperada.get().setUsuarioEliminacion(Constant.USU_ADMIN);
-            personaRecuperada.get().setFechaEliminacion(getTimestamp());
-            return personaMapper.mapToDto(personaRepository.save(personaRecuperada.get()));
-        } else {
-            throw new RuntimeException("No se encontró la persona");
-        }
-    }*/
-
     private Persona getEntity(PersonaRequest personaRequest, boolean actualiza, Long id) {
         ReniecResponse reniecResponse = getExecutionReniec(personaRequest.getNumDocumento());
         TipoDocumento tipoDocumento = tipoDocumentoRepository.findByDescripcion(personaRequest.getTipoDocumento());

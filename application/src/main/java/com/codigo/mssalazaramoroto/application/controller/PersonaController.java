@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +55,7 @@ public class PersonaController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<BaseResponse> registrar(@RequestBody PersonaRequest personaRequest) {
+    public ResponseEntity<BaseResponse> registrar(@Valid  @RequestBody PersonaRequest personaRequest) {
         return personaServiceIn.crearPersonaServiceIn(personaRequest);
     }
 

@@ -12,6 +12,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -58,6 +61,32 @@ class TipoBienInmuebleAdapterTest {
         when(tipoBienInmuebleMapper.mapToDto(tipoBienInmuebleRepository.save(tipoBienInmueble))).thenReturn(responseEsperado);
         // Act
         ResponseEntity<BaseResponse> tipoBienInmuebleDtoRecibido = tipoBienInmuebleAdapter.crearTipoBienInmuebleOut(tipoBienInmuebleRequest);
+        // Assert
+        assertEquals(responseEsperado.getCode(), tipoBienInmuebleDtoRecibido.getBody().getCode());
+    }
+    @Test
+    void obtenerTodosTipoBienInmuebleOutSuccess() {
+        // Arrange
+        TipoBienInmueble tipoBienInmueble = new TipoBienInmueble(1L, "Departamento", "Activo", "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()));
+        BaseResponse responseEsperado = new BaseResponse();
+        responseEsperado.setCode(20000);
+        when(tipoBienInmuebleRepository.findAll()).thenReturn(Collections.singletonList(tipoBienInmueble));
+        when(tipoBienInmuebleMapper.mapToDto(tipoBienInmueble)).thenReturn(responseEsperado);
+        // Act
+        ResponseEntity<BaseResponse> tipoBienInmuebleDtoRecibido = tipoBienInmuebleAdapter.buscarTodosOut();
+        // Assert
+        assertEquals(responseEsperado.getCode(), tipoBienInmuebleDtoRecibido.getBody().getCode());
+    }
+    @Test
+    void obtenerTipoBienInmuebleOutSuccess() {
+        // Arrange
+        TipoBienInmueble tipoBienInmueble = new TipoBienInmueble(1L, "Departamento", "Activo", "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()));
+        BaseResponse responseEsperado = new BaseResponse();
+        responseEsperado.setCode(30000);
+        when(tipoBienInmuebleRepository.findById(tipoBienInmueble.getId())).thenReturn(Optional.of(tipoBienInmueble));
+        when(tipoBienInmuebleMapper.mapToDto(tipoBienInmueble)).thenReturn(responseEsperado);
+        // Act
+        ResponseEntity<BaseResponse> tipoBienInmuebleDtoRecibido = tipoBienInmuebleAdapter.buscarTodosOut();
         // Assert
         assertEquals(responseEsperado.getCode(), tipoBienInmuebleDtoRecibido.getBody().getCode());
     }

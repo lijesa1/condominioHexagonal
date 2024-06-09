@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,12 +51,11 @@ public class TipoBienInmuebleController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<BaseResponse> registrar(@RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+    public ResponseEntity<BaseResponse> registrar(@Valid @RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
         return tipoBienInmuebleServiceIn.crearTipoBienInmuebleServiceIn(tipoBienInmuebleRequest);
     }
 
     @GetMapping
-
     @Operation(
             summary = "Obtener todos los Tipo Bien Inmueble",
             description = "Para usar endPoint debes enviar un objeto Tipo Bien Inmueble, lo cual se va guardar en Base de datos previa validacion",
@@ -143,7 +143,7 @@ public class TipoBienInmuebleController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @Valid @RequestBody TipoBienInmuebleRequest tipoBienInmuebleRequest) {
         return tipoBienInmuebleServiceIn.actualizarIn(id, tipoBienInmuebleRequest);
     }
 

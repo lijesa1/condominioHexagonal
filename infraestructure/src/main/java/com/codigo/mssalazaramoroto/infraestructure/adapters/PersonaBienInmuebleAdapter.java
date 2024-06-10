@@ -1,35 +1,91 @@
 package com.codigo.mssalazaramoroto.infraestructure.adapters;
+
 import com.codigo.mssalazaramoroto.domain.aggregates.constants.Constant;
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaBienInmuebleDto;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaBienInmuebleRequest;
 
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.out.PersonaBienInmuebleServiceOut;
+import com.codigo.mssalazaramoroto.infraestructure.dao.BienInmuebleRepository;
 import com.codigo.mssalazaramoroto.infraestructure.dao.PersonaBienInmuebleRepository;
+import com.codigo.mssalazaramoroto.infraestructure.dao.PersonaRepository;
 import com.codigo.mssalazaramoroto.infraestructure.entity.PersonaBienInmueble;
 
 import com.codigo.mssalazaramoroto.infraestructure.mapper.PersonaBienInmuebleMapper;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class PersonaBienInmuebleAdapter implements PersonaBienInmuebleServiceOut {
     private final PersonaBienInmuebleRepository personaBienInmuebleRepository;
-
+    private final PersonaRepository personaRepository;
+    private final BienInmuebleRepository bienInmuebleRepository;
 
     @Override
-    public PersonaBienInmuebleDto crearPersonaBienInmuebleOut(PersonaBienInmuebleRequest personaBienInmuebleRequest) {
-        PersonaBienInmueble personaBienInmuebleEntity = getEntity(personaBienInmuebleRequest, false, null);
-        return PersonaBienInmuebleMapper.fromEntity(personaBienInmuebleRepository.save(personaBienInmuebleEntity));
+    public ResponseEntity<BaseResponse> crearPersonaBienInmuebleOut(PersonaBienInmuebleRequest personaBienInmuebleRequest) {
+        boolean existsPersona = personaRepository.existsById(personaBienInmuebleRequest.getPersonaId());
+        boolean existsBienInmueble = bienInmuebleRepository.existsById(personaBienInmuebleRequest.getBienInmuebleId());
+        BaseResponse baseResponse = new BaseResponse();
+        if (existsPersona) {
+            if (existsBienInmueble) {
+                PersonaBienInmueble personaBienInmueble = getEntity(personaBienInmuebleRequest, false, null);
+                baseResponse.setCode(Constant.CODE_POST_PERSONA_BIEN_INMUEBLE_OK);
+                baseResponse.setMessage(Constant.MSG_POST_PERSONA_BIEN_INMUEBLE_OK);
+                baseResponse.setEntidad(personaBienInmuebleRepository.save(personaBienInmueble));
+            } else {
+                baseResponse.setCode(Constant.CODE_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_KO);
+                baseResponse.setMessage(Constant.MSG_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_KO);
+                baseResponse.setEntidad(Optional.empty());
+            }
+        } else {
+            if (existsBienInmueble) {
+                baseResponse.setCode(Constant.CODE_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_PERSONA_KO);
+                baseResponse.setMessage(Constant.MSG_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_PERSONA_KO);
+                baseResponse.setEntidad(Optional.empty());
+            } else {
+                baseResponse.setCode(Constant.CODE_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_PERSONA_KO);
+                baseResponse.setMessage(Constant.MSG_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_PERSONA_KO);
+                baseResponse.setEntidad(Optional.empty());
+            }
+        }
+        return ResponseEntity.ok(baseResponse);
+    }
+
+    /*@Override
+    public ResponseEntity<BaseResponse> crearPersonaBienInmuebleOut(PersonaBienInmuebleRequest personaBienInmuebleRequest) {
+        return null;
+    }*/
+
+    @Override
+    public ResponseEntity<BaseResponse> buscarTodosOut() {
+        return null;
     }
 
     @Override
+    public ResponseEntity<BaseResponse> buscarPorIdOut(Long id) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> actualizarOut(Long id, PersonaBienInmuebleRequest personaBienInmuebleRequest) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<BaseResponse> eliminarOut(Long id) {
+        return null;
+    }
+
+    /*@Override
     public List<PersonaBienInmuebleDto> buscarTodosOut() {
         List<PersonaBienInmuebleDto> listaDto = new ArrayList<>();
         List<PersonaBienInmueble> entidades = personaBienInmuebleRepository.findAll();
@@ -67,28 +123,27 @@ public class PersonaBienInmuebleAdapter implements PersonaBienInmuebleServiceOut
         } else {
             throw new RuntimeException("No se encontró el Tipo Bien Inmueble");
         }
-    }
+    }*/
 
-        private PersonaBienInmueble getEntity(PersonaBienInmuebleRequest  personaBienInmuebleRequest, boolean actualiza, Long id) {
-            PersonaBienInmueble entity = new PersonaBienInmueble();
-           // entity.setsetBienInmueble(personaBienInmuebleRequest.getpersonaBienInmuebleId());
-            entity.setEstado(personaBienInmuebleRequest.getEstado());
-            if (actualiza) {
-                entity.setId(id);
+    private PersonaBienInmueble getEntity(PersonaBienInmuebleRequest personaBienInmuebleRequest, boolean actualiza, Long id) {
+        PersonaBienInmueble entity = new PersonaBienInmueble();
+        entity.setBienInmueble(bienInmuebleRepository.findById(personaBienInmuebleRequest.getBienInmuebleId()).get());
+        entity.setPersona(personaRepository.findById(personaBienInmuebleRequest.getPersonaId()).get());
+        entity.setEstado(personaBienInmuebleRequest.getEstado());
+        if (actualiza) {
+            entity.setId(id);
             entity.setUsuarioCreacion(Constant.USU_ADMIN);
             entity.setFechaCreacion(getTimestamp());
-            entity.setUsuarioModificacion(Constant.USU_ADMIN);
-            entity.setFechaModificacion(getTimestamp());
-            } else {
-                entity.setUsuarioCreacion(Constant.USU_ADMIN);
+        } else {
+            entity.setUsuarioCreacion(Constant.USU_ADMIN);
             entity.setFechaCreacion(getTimestamp());
-            }
-            return entity;
         }
+        return entity;
+    }
 
-        private Timestamp getTimestamp() {
-            long currenTime = System.currentTimeMillis();
-            return new Timestamp(currenTime);
-        }
+    private Timestamp getTimestamp() {
+        long currenTime = System.currentTimeMillis();
+        return new Timestamp(currenTime);
+    }
 }
 

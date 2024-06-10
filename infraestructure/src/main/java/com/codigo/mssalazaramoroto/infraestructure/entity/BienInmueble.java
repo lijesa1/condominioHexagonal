@@ -72,6 +72,4 @@ public class BienInmueble {
     @ManyToOne(targetEntity = TipoBienInmueble.class)
     @JoinColumn(name = "tipo_bien_inmueble_id")
     private TipoBienInmueble tipoBienInmueble;
-
-
 }

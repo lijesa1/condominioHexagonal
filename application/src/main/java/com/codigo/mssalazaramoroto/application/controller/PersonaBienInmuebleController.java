@@ -3,6 +3,7 @@ package com.codigo.mssalazaramoroto.application.controller;
 
 import com.codigo.mssalazaramoroto.domain.aggregates.dto.PersonaBienInmuebleDto;
 import com.codigo.mssalazaramoroto.domain.aggregates.request.PersonaBienInmuebleRequest;
+import com.codigo.mssalazaramoroto.domain.aggregates.response.BaseResponse;
 import com.codigo.mssalazaramoroto.domain.ports.in.PersonaBienInmuebleServiceIn;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ms-condominio/v1/personaBienInmuebleDto")
+@RequestMapping("/ms-condominio/v1/personaBienInmueble")
 @AllArgsConstructor
 
 @Tag(
@@ -55,10 +56,8 @@ public class PersonaBienInmuebleController {
             )
     })
 
-    public ResponseEntity<PersonaBienInmuebleDto> registrar(@RequestBody PersonaBienInmuebleRequest personaBienInmuebleRequest) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(personaBienInmuebleServiceIn.crearPersonaBienInmuebleServiceIn(personaBienInmuebleRequest));
+    public ResponseEntity<BaseResponse> registrar(@RequestBody PersonaBienInmuebleRequest personaBienInmuebleRequest) {
+        return personaBienInmuebleServiceIn.crearPersonaBienInmuebleServiceIn(personaBienInmuebleRequest);
     }
 
     @GetMapping
@@ -88,10 +87,8 @@ public class PersonaBienInmuebleController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<List<PersonaBienInmuebleDto>> buscarPersonaBienInmueble() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaBienInmuebleServiceIn.obtenerTodosIn());
+    public ResponseEntity<BaseResponse> buscarPersonaBienInmueble() {
+        return personaBienInmuebleServiceIn.obtenerTodosIn();
     }
 
     @GetMapping("/{id}")
@@ -121,10 +118,8 @@ public class PersonaBienInmuebleController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<PersonaBienInmuebleDto> buscarPorId(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaBienInmuebleServiceIn.buscarPorIdIn(id).get());
+    public ResponseEntity<BaseResponse> buscarPorId(@PathVariable Long id) {
+        return personaBienInmuebleServiceIn.buscarPorIdIn(id);
     }
 
     @PutMapping("/{id}")
@@ -154,10 +149,8 @@ public class PersonaBienInmuebleController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<PersonaBienInmuebleDto> actualizar(@PathVariable Long id, @RequestBody PersonaBienInmuebleRequest personaBienInmuebleRequest) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaBienInmuebleServiceIn.actualizarIn(id, personaBienInmuebleRequest));
+    public ResponseEntity<BaseResponse> actualizar(@PathVariable Long id, @RequestBody PersonaBienInmuebleRequest personaBienInmuebleRequest) {
+        return personaBienInmuebleServiceIn.actualizarIn(id, personaBienInmuebleRequest);
     }
 
     @DeleteMapping("/{id}")
@@ -187,13 +180,7 @@ public class PersonaBienInmuebleController {
                     content = @Content(mediaType = "application/json")
             )
     })
-    public ResponseEntity<PersonaBienInmuebleDto> eliminar(@PathVariable Long id) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(personaBienInmuebleServiceIn.eliminarIn(id));
-
+    public ResponseEntity<BaseResponse> eliminar(@PathVariable Long id) {
+        return personaBienInmuebleServiceIn.eliminarIn(id);
     }
-
-
-
 }

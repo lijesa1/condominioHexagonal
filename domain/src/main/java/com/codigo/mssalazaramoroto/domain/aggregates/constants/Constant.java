@@ -216,4 +216,17 @@ public class Constant {
     public static final Integer CODE_POST_DETALLE_LIBRO_VISITA_OK = 27000;
     public static final String MSG_POST_DETALLE_LIBRO_VISITA_OK = "Invitado agregado al Libro Visita satisfactoriamente";
 
+    // Mensajes Persona Bien Inmueble
+    // Post
+    public static final Integer CODE_POST_PERSONA_BIEN_INMUEBLE_OK = 28000;
+    public static final String MSG_POST_PERSONA_BIEN_INMUEBLE_OK = "Persona Bien Inmueble registrada satisfactoriamente";
+
+    public static final Integer CODE_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_KO = 28001;
+    public static final String MSG_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_KO = "No existe el Bien Inmueble";
+
+    public static final Integer CODE_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_PERSONA_KO = 28002;
+    public static final String MSG_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_PERSONA_KO = "No existe la Persona";
+
+    public static final Integer CODE_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_PERSONA_KO = 28003;
+    public static final String MSG_POST_PERSONA_BIEN_INMUEBLE_NOT_EXISTS_BIEN_INMUEBLE_PERSONA_KO = "No existe la Persona y el Bien Inmueble";
 }

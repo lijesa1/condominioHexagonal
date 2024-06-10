@@ -40,7 +40,4 @@ public class TipoBienInmueble {
 
     @Column(name = "fecha_eliminacion", nullable = true)
     private Timestamp fechaEliminacion;
-
-    /*@OneToMany(targetEntity = BienInmueble.class, fetch = FetchType.LAZY, mappedBy = "tipoBienInmueble")
-    private List<BienInmueble> bienInmuebleList;*/
 }

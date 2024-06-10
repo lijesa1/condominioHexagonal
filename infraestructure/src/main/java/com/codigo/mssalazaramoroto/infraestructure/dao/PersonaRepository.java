@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
     boolean existsByNumDocumento(String numDocumento);
+    boolean existsById(Long id);
 }

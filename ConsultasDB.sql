@@ -27,3 +27,7 @@ fecha_creacion, usuario_actualizacion, fecha_actualizacion, usuario_eliminacion,
 SELECT lv.id, (SELECT nombres FROM persona WHERE id = lv.persona_registrador_id),lv.observaciones_libro_visita,
 lv.fecha_visita, (SELECT nombres FROM persona WHERE id=dlv.persona_visitante_id) ,(SELECT num_documento FROM persona WHERE id=dlv.persona_visitante_id) 
 FROM libro_visita lv,detalle_libro_visita dlv  WHERE persona_registrador_id = (SELECT id FROM persona WHERE num_documento = '41181961');
+
+-- Persona Bien Inmueble
+SELECT * FROM persona_bien_inmueble;
+SELECT id, bien_inmueble_id, persona_id FROM persona_bien_inmueble;

@@ -83,6 +83,7 @@ class TipoBienInmuebleAdapterTest {
         TipoBienInmueble tipoBienInmueble = new TipoBienInmueble(1L, "Departamento", "Activo", "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()), "lsalazar", new Timestamp(System.currentTimeMillis()));
         BaseResponse responseEsperado = new BaseResponse();
         responseEsperado.setCode(30000);
+
         when(tipoBienInmuebleRepository.findById(tipoBienInmueble.getId())).thenReturn(Optional.of(tipoBienInmueble));
         when(tipoBienInmuebleMapper.mapToDto(tipoBienInmueble)).thenReturn(responseEsperado);
         // Act

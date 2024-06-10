@@ -28,12 +28,6 @@ public class PersonaBienInmueble {
     @Column(name = "fecha_creacion", nullable = true)
     private Timestamp fechaCreacion;
 
-    @Column(name = "usuario_modificacion", nullable = true)
-    private String usuarioModificacion;
-
-    @Column(name = "fecha_modificacion", nullable = true)
-    private Timestamp fechaModificacion;
-
     @Column(name = "usuario_actualizacion", nullable = true)
     private String usuarioActualizacion;
 
@@ -46,12 +40,11 @@ public class PersonaBienInmueble {
     @Column(name = "fecha_eliminacion", nullable = true)
     private Timestamp fechaEliminacion;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = BienInmueble.class)
     @JoinColumn(name = "bien_inmueble_id", nullable = false)
     private BienInmueble bienInmueble;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Persona.class)
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
 }

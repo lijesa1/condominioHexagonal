@@ -30,4 +30,4 @@ FROM libro_visita lv,detalle_libro_visita dlv  WHERE persona_registrador_id = (S
 
 -- Persona Bien Inmueble
 SELECT * FROM persona_bien_inmueble;
-SELECT id, bien_inmueble_id, persona_id FROM persona_bien_inmueble;
+SELECT bien_inmueble_id, persona_id, estado FROM persona_bien_inmueble;

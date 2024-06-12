@@ -12,6 +12,7 @@ import com.codigo.mssalazaramoroto.infraestructure.dao.PersonaBienInmuebleReposi
 import com.codigo.mssalazaramoroto.infraestructure.dao.PersonaRepository;
 import com.codigo.mssalazaramoroto.infraestructure.entity.PersonaBienInmueble;
 
+import com.codigo.mssalazaramoroto.infraestructure.entity.PersonaBienInmueblePKId;
 import com.codigo.mssalazaramoroto.infraestructure.mapper.PersonaBienInmuebleMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -127,11 +128,14 @@ public class PersonaBienInmuebleAdapter implements PersonaBienInmuebleServiceOut
 
     private PersonaBienInmueble getEntity(PersonaBienInmuebleRequest personaBienInmuebleRequest, boolean actualiza, Long id) {
         PersonaBienInmueble entity = new PersonaBienInmueble();
-        entity.setBienInmueble(bienInmuebleRepository.findById(personaBienInmuebleRequest.getBienInmuebleId()).get());
-        entity.setPersona(personaRepository.findById(personaBienInmuebleRequest.getPersonaId()).get());
+        //entity.setBienInmueble(bienInmuebleRepository.findById(personaBienInmuebleRequest.getBienInmuebleId()).get());
+        PersonaBienInmueblePKId personaBienInmueblePKId = new PersonaBienInmueblePKId(personaBienInmuebleRequest.getBienInmuebleId(), personaBienInmuebleRequest.getPersonaId());
+        //entity.setPersonaBienInmueblePKId(personaBienInmueblePKId);
         entity.setEstado(personaBienInmuebleRequest.getEstado());
+        //entity.setPersona(personaRepository.findById(personaBienInmuebleRequest.getPersonaId()).get());
+        //entity.setEstado(personaBienInmuebleRequest.getEstado());
         if (actualiza) {
-            entity.setId(id);
+            //entity.setId(id);
             entity.setUsuarioCreacion(Constant.USU_ADMIN);
             entity.setFechaCreacion(getTimestamp());
         } else {

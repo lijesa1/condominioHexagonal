@@ -41,6 +41,66 @@
 					"response": []
 				},
 				{
+					"name": "TipoBienInmueble-crearTipoDptoDuplicado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Departamento\",\r\n    \"estado\": \"Activo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/tipoBienInmueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ms-condominio",
+								"v1",
+								"tipoBienInmueble"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TipoBienInmueble-crearTipoDptoValid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Departamento\",\r\n    \"estado\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/tipoBienInmueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ms-condominio",
+								"v1",
+								"tipoBienInmueble"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "TipoBienInmueble-creaTipoEstacionamiento",
 					"request": {
 						"method": "POST",
@@ -272,6 +332,36 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"torre\": \"07\",\r\n    \"pisoTorre\": \"02\",\r\n    \"numDpto\": \"205\",\r\n    \"numEstacionamiento\": null,\r\n    \"numComercio\": null,\r\n    \"enUso\": true,\r\n    \"enAlquiler\": false,\r\n    \"estado\": \"Activo\",\r\n    \"tipoBienInmueble\": \"Departamento\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/bienInmueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ms-condominio",
+								"v1",
+								"bienInmueble"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BienInmueble-crearDptoValid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"torre\": \"07\",\r\n    \"pisoTorre\": \"02\",\r\n    \"numDpto\": \"205\",\r\n    \"numEstacionamiento\": null,\r\n    \"numComercio\": null,\r\n    \"enUso\": null,\r\n    \"enAlquiler\": null,\r\n    \"estado\": null,\r\n    \"tipoBienInmueble\": \" \"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1407,7 +1497,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/ms-condominio/v1/persona/3",
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/persona/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1417,7 +1507,7 @@
 								"ms-condominio",
 								"v1",
 								"persona",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -1523,16 +1613,16 @@
 			]
 		},
 		{
-			"name": "Persona Bien Inmueble",
+			"name": "Detalle Libro Visita",
 			"item": [
 				{
-					"name": "Persona-bien-inmueble-crear",
+					"name": "registrarDetalleLibroVisita1",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombres\": \"Liliana Jessica\",\r\n    \"apellido_paterno\": \"Salazar\",\r\n    \"apellido_materno\": \"Amoroto\",\r\n    \"celular\":\"999888777\",\r\n    \"email\":\"lijesa@gmail.com\",\r\n    \"num_documento\":\"41234567\",\r\n    \"tipo_documento\":\"DNI\",\r\n    \"tipo_persona\": \"Propietario\",\r\n    \"fecha_nac\": \"07/12/1981\",\r\n    \"login\":\"lijesa\",\r\n    \"password\":\"123456\"\r\n}",
+							"raw": "{\n    \"observacionesPersonaVisitante\": \"Ingresó con mascota\",\n    \"libroVisitaId\": 1,\n    \"personaVisitante\": 2,\n    \"estadoVisitante\": \"Activo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1540,16 +1630,141 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8083/ms-condominio/v1/persona",
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/detalleLibroVisita",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "{{port}}",
 							"path": [
 								"ms-condominio",
 								"v1",
-								"persona"
+								"detalleLibroVisita"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrarDetalleLibroVisita2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"observacionesPersonaVisitante\": \"Ingresó con caja de regalo\",\n    \"libroVisitaId\": 1,\n    \"personaVisitante\": 3,\n    \"estadoVisitante\": \"Activo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/detalleLibroVisita",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ms-condominio",
+								"v1",
+								"detalleLibroVisita"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrarDetalleLibroVisita3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"observacionesPersonaVisitante\": \"Ingresó con torta\",\n    \"libroVisitaId\": 1,\n    \"personaVisitante\": 4,\n    \"estadoVisitante\": \"Activo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/detalleLibroVisita",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ms-condominio",
+								"v1",
+								"detalleLibroVisita"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrarDetalleLibroVisitaSinAnfitrion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"observacionesPersonaVisitante\": \"Ingresó con gato\",\n    \"libroVisitaId\": 1,\n    \"personaVisitante\": 1000,\n    \"estadoVisitante\": \"Activo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/detalleLibroVisita",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ms-condominio",
+								"v1",
+								"detalleLibroVisita"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Persona Bien Inmueble",
+			"item": [
+				{
+					"name": "registrarPersonaBienInmueble",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bienInmuebleId\": 1,\r\n    \"personaId\": 1,\r\n    \"estado\": \"Activo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/ms-condominio/v1/personaBienInmueble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"ms-condominio",
+								"v1",
+								"personaBienInmueble"
 							]
 						}
 					},
